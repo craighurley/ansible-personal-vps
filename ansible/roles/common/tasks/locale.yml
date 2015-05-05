@@ -1,0 +1,10 @@
+---
+- name: "ensure correct locales exist"
+  locale_gen: name=en_NZ.UTF-8 state=present
+  notify:
+    - update timezone
+
+- name: "set timezone"
+  command: ln -sf /usr/share/zoneinfo/Pacific/Auckland /etc/localtime
+  notify:
+    - update timezone

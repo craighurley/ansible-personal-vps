@@ -1,0 +1,3 @@
+---
+- name: "add pub key for user: craig"
+  authorized_key: user=craig key="{{ lookup('file', '/Users/craig/.ssh/id_rsa.pub') }}"
