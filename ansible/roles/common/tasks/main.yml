@@ -4,3 +4,4 @@
 - include: users.yml
 - include: auth.yml
 - include: locale.yml
+- include: ssh.yml
