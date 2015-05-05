@@ -7,6 +7,7 @@ boxes = [
     :box_version => "20150427.0.0",
     :name => "vps",
     :description => "Personal VPS",
+    :playbook => "vps.yml",
     :cpus => "2",
     :cpu_execution_cap => "66",
     :ram => "1024"
@@ -36,7 +37,7 @@ Vagrant.configure(2) do |config|
       end
 
       vps_config.vm.provision :ansible do |ansible|
-        ansible.playbook = "ansible/vps.yml"
+        ansible.playbook = "ansible/" + box[:playbook]
         ansible.verbose = "vvvv"
       end
     end
