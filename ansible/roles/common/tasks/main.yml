@@ -1,7 +1,5 @@
 ---
 # tasks file for common
-- include: groups.yml
-- include: users.yml
 - include: auth.yml
 - include: locale.yml
 - include: ssh.yml

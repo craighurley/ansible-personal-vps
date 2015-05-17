@@ -1,3 +1,0 @@
----
-- name: "create user: craig"
-  user: name=craig shell=/bin/bash groups=sshusers,sudo append=yes

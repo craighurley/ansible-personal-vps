@@ -1,35 +1,7 @@
 ---
-- name: "change ssh ports"
-  lineinfile: dest=/etc/ssh/sshd_config
-              regexp="^Port\s"
-              line="Port 22"
-              state=present
-  notify: restart ssh
-
-- name: "disallow password authentication"
-  lineinfile: dest=/etc/ssh/sshd_config
-              regexp="^PasswordAuthentication"
-              line="PasswordAuthentication no"
-              state=present
-  notify: restart ssh
-
-- name: "disallow root ssh access"
-  lineinfile: dest=/etc/ssh/sshd_config
-              regexp="^PermitRootLogin"
-              line="PermitRootLogin no"
-              state=present
-  notify: restart ssh
-
-- name: "reduce login grace period"
+- name: reduce login grace period
   lineinfile: dest=/etc/ssh/sshd_config
               regexp="^LoginGraceTime"
-              line="LoginGraceTime 30"
-              state=present
-  notify: restart ssh
-
-- name: "tarpit multiple attempts to auth"
-  lineinfile: dest=/etc/ssh/sshd_config
-              regexp="^#MaxStartups"
-              line="MaxStartups 5:50:10"
-              state=present
-  notify: restart ssh
+              line="LoginGraceTime 15"
+  notify:
+    - restart ssh

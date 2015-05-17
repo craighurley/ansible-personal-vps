@@ -1,3 +1,16 @@
 ---
-- name: "add pub key for user: craig"
-  authorized_key: user=craig key="{{ lookup('file', '/Users/craig/.ssh/id_rsa.pub') }}"
+- name: create groups
+  group: name={{ item }} state=present
+  with_items:
+    - "{{ v_groups }}"
+
+- name: create users
+  user: name={{ item.id }} shell=/bin/bash groups={{ item.groups }} append=yes
+  with_items:
+    - "{{ v_users }}"
+
+- name: add pub keys for users
+  #authorized_key: user={{ item.id }} key="{{ lookup('file', "{{ item.key }}") }}"
+  debug: msg="{{ item.key }}"
+  with_items:
+    - "{{ v_users }}"

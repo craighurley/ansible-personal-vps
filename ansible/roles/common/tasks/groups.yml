@@ -1,3 +1,0 @@
----
-- name: "create sshusers group"
-  group: name=sshusers state=present
