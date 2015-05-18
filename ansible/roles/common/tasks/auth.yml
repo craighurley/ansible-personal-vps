@@ -7,10 +7,9 @@
 - name: create users
   user: name={{ item.id }} shell=/bin/bash groups={{ item.groups }} append=yes
   with_items:
-    - "{{ v_users }}"
+    - "{{ v_private_users }}"
 
 - name: add pub keys for users
-  #authorized_key: user={{ item.id }} key="{{ lookup('file', "{{ item.key }}") }}"
-  debug: msg="{{ item.key }}"
+  authorized_key: user={{ item.id }} key="{{ lookup('file', item.key) }}"
   with_items:
-    - "{{ v_users }}"
+    - "{{ v_private_users }}"

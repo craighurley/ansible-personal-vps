@@ -1,7 +1,7 @@
 ---
-# TODO: investigate/fix problem restarting ssh service (ansible v1.9.1 on Ubuntu 14.14 x64)
 - name: restart ssh
-  service: name=cron state=restarted
+  # TODO: investigate/fix problem restarting ssh service (ansible v1.9.1 on Ubuntu 14.14 x64)
+  #service: name=ssh state=restarted
+  command: service ssh restart
   register: result
   ignore_errors: true
-
