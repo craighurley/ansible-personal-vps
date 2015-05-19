@@ -5,13 +5,14 @@ boxes = [
   {
     :box => "ubuntu/trusty64",
     :box_version => "20150427.0.0",
-    :name => "vps",
+    :name => "vps-1",
     :description => "Personal VPS",
-    :playbook => "vps.yml",
+    :ansible_playbook => "ansible/vps.yml",
+    :ansible_log_level => "v",
     :cpus => "2",
-    :cpu_execution_cap => "66",
+    :cpu_execution_cap => "77",
     :ram => "1024"
-   },
+  },
 ]
 
 NIC = 'en0: Wi-Fi (AirPort)'
@@ -19,16 +20,24 @@ HOSTNAME_PREFIX = `hostname`.chomp.downcase[/[^.]+/]
 
 Vagrant.configure(2) do |config|
   boxes.each do |box|
-    config.vm.define box[:name] do |vps_config|
-      config.vm.box = box[:box]
-      config.vm.box_version = box[:box_version]
+    config.vm.define box[:name] do |box_config|
+      # OS and hostname
+      box_config.vm.box = box[:box]
+      box_config.vm.box_version = box[:box_version]
+      box_config.vm.hostname = "#{HOSTNAME_PREFIX}-" + box[:name]
 
-      hostname = "#{HOSTNAME_PREFIX}-" + box[:name]
-      vps_config.vm.hostname = hostname
-      vps_config.vm.network "public_network", bridge: NIC
+      # Networking
+      # By default a NAT interface is added.  Other networks can be added as follows:
+      #box_config.vm.network "private_network", type: "dhcp", virtualbox__intnet: true
+      #box_config.vm.network "private_network", type: "dhcp", virtualbox__intnet: "mynetwork"
+      #box_config.vm.network "public_network", bridge: NIC
+
+      # Shared folders
+      box_config.vm.synced_folder ".", "/vagrant", disabled: true
+      box_config.vm.synced_folder "./share", "/vagrant_share", create: true
 
       # TODO: switch provider to digital ocean
-      config.vm.provider "virtualbox" do |vb|
+      box_config.vm.provider "virtualbox" do |vb|
         vb.customize ["modifyvm", :id, "--cpus", box[:cpus]]
         vb.customize ["modifyvm", :id, "--cpuexecutioncap", box[:cpu_execution_cap]]
         vb.customize ["modifyvm", :id, "--memory", box[:ram]]
@@ -36,9 +45,10 @@ Vagrant.configure(2) do |config|
         vb.customize ["modifyvm", :id, "--description", box[:description]]
       end
 
-      vps_config.vm.provision :ansible do |ansible|
-        ansible.playbook = "ansible/" + box[:playbook]
-        ansible.verbose = "vvvv"
+      # Configure box
+      box_config.vm.provision :ansible do |ansible|
+        ansible.playbook = box[:ansible_playbook]
+        ansible.verbose = box[:ansible_log_level]
       end
     end
   end

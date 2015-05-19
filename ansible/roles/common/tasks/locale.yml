@@ -1,10 +1,10 @@
 ---
-- name: "ensure correct locales exist"
-  locale_gen: name=en_NZ.UTF-8 state=present
+- name: ensure correct locales exist
+  locale_gen: name="{{ v_locale }}" state=present
   notify:
     - update timezone
 
-- name: "set timezone"
-  command: ln -sf /usr/share/zoneinfo/Pacific/Auckland /etc/localtime
+- name: set timezone
+  command: ln -sf /usr/share/zoneinfo/"{{ v_time_zone }}" /etc/localtime
   notify:
     - update timezone
