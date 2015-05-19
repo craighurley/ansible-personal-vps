@@ -3,3 +3,6 @@ v_time_zone: Pacific/Auckland
 v_locale: en_NZ.UTF-8
 v_groups:
   - sshusers
+v_ssh_ports:
+  - 22
+  - 443
