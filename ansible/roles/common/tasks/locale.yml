@@ -1,10 +1,12 @@
 ---
 - name: ensure correct locales exist
-  locale_gen: name="{{ v_locale }}" state=present
+  locale_gen: name="{{ item }}" state=present
+  with_items:
+    - "{{ v_locales }}"
   notify:
     - update timezone
 
 - name: set timezone
-  command: ln -sf /usr/share/zoneinfo/"{{ v_time_zone }}" /etc/localtime
+  file: src=/usr/share/zoneinfo/"{{ v_time_zone }}" dest=/etc/localtime state=link force=yes
   notify:
     - update timezone

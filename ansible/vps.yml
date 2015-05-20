@@ -4,8 +4,14 @@
   gather_facts: yes
   vars_files:
     - ./private/variables/users.yml
+
   pre_tasks:
-#    - name: update apt cache
-#      apt: update_cache=yes
+#    - name: update apt
+#      apt: upgrade=safe update_cache=yes cache_valid_time=43200
+#      when: ansible_os_family == "Debian"
+#    - name: update yum
+#      yum: name=* state=latest update_cache=yes
+#      when: ansible_os_family == "RedHat"
+
   roles:
     - common
