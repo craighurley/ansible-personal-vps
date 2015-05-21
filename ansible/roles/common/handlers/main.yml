@@ -2,3 +2,4 @@
 # handlers file for common
 - include: locale.yml
 - include: ssh.yml
+- include: ntp.yml

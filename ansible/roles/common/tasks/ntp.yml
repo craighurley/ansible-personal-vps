@@ -1,0 +1,35 @@
+---
+- name: install ntp
+  apt: name=ntp state=present
+  when: ansible_os_family == "Debian"
+
+- name: install ntp
+  yum: name=ntp state=present
+  when: ansible_os_family == "RedHat"
+
+- name: ntp configuration file update
+  template: src=../files/ntp.conf.j2
+    dest=/etc/ntp.conf
+    backup=yes
+    owner=0 group=0 mode=0644
+  notify:
+    - restart ntp
+
+
+#- name: configure ntp
+  # /etc/ntp.conf
+  # server [0:3].pool.ntp.org
+  # restrict access: http://support.ntp.org/bin/view/Support/AccessRestrictions
+  # restrict 10.0.0.0 mask 255.255.255.0 nomodify notrap
+#  IPV4: restrict default ignore
+#  IPv6: restrict -6 default ignore
+#  IPv4: restrict 127.0.0.1
+#  IPv6: restrict -6 ::1
+#  IPv4: server x.y.z.w
+#  IPv4: restrict x.y.z.w [nomodify notrap nopeer noquery]
+#  IPv6: server -6 v:u:t:s::
+#  IPv6: restrict -6 v:u:t:s:: [nomodify notrap nopeer noquery]
+#  IPv4: restrict 192.168.1.0 mask 255.255.255.0 nomodify notrap nopeer
+#  IPv6: restrict 2001:838:0:1:: mask ffff:ffff:ffff:ffff:: nomodify notrap nopeer
+#  notify:
+#    - restart ntp

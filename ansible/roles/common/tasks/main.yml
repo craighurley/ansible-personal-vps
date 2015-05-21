@@ -3,3 +3,4 @@
 - include: auth.yml
 - include: locale.yml
 - include: ssh.yml
+- include: ntp.yml
