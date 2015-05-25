@@ -1,0 +1,24 @@
+---
+- name: install ntp
+  apt: name=ntp state=present
+  when: ansible_os_family == "Debian"
+  tags:
+    - ntp
+    - install
+
+- name: install ntp
+  yum: name=ntp state=present
+  when: ansible_os_family == "RedHat"
+  tags:
+    - ntp
+    - install
+
+- name: ntp configuration file update
+  template: src=ntp.conf.j2
+    dest=/etc/ntp.conf
+    backup=yes
+    owner=0 group=0 mode=0644
+  notify:
+    - restart ntp
+  tags:
+    - ntp
