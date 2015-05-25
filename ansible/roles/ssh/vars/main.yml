@@ -1,0 +1,16 @@
+---
+v_ssh_ports:
+  - 22
+  - 443
+
+v_ssh_listenaddresses:
+  - 0.0.0.0
+
+v_ssh_serverkeybits: 2048
+
+v_ssh_logingracetime: 15
+
+v_ssh_maxstartups: "5:50:10"
+
+v_ssh_groups:
+  - sshusers
