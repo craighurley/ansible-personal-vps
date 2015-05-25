@@ -1,12 +1,23 @@
 ---
-- name: ensure correct locales exist
-  locale_gen: name="{{ item }}" state=present
-  with_items:
-    - "{{ v_locales }}"
+- name: set locale
+  locale_gen: name="{{ v_locale_debian }}" state=present
+  when: ansible_os_family == "Debian"
   notify:
     - update timezone
+  tags:
+    - locale
+
+- name: set locale
+  command: localectl set-locale LANG="{{ v_locale_redhat }}"
+  when: ansible_os_family == "RedHat"
+  notify:
+    - update timezone
+  tags:
+    - locale
 
 - name: set timezone
   file: src=/usr/share/zoneinfo/"{{ v_time_zone }}" dest=/etc/localtime state=link force=yes
   notify:
     - update timezone
+  tags:
+    - locale

@@ -3,3 +3,4 @@
   command: dpkg-reconfigure --frontend noninteractive tzdata
   register: result
   ignore_errors: false
+  when: ansible_os_family == "Debian"
