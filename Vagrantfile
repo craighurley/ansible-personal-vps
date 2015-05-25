@@ -5,7 +5,18 @@ boxes = [
   {
     :box => "ubuntu/trusty64",
     :box_version => "20150427.0.0",
-    :name => "vps-1",
+    :name => "vps-ubuntu",
+    :description => "Personal VPS",
+    :ansible_playbook => "ansible/vps.yml",
+    :ansible_log_level => "v",
+    :cpus => "2",
+    :cpu_execution_cap => "77",
+    :ram => "1024"
+  },
+  {
+    :box => "puppetlabs/centos-7.0-64-puppet",
+    :box_version => "1.0.1",
+    :name => "vps-centos",
     :description => "Personal VPS",
     :ansible_playbook => "ansible/vps.yml",
     :ansible_log_level => "v",
