@@ -1,31 +1,57 @@
-Role Name
-=========
+Ansible role: common
+====================
 
-A brief description of the role goes here.
+Configure common items such as groups, users, locale and profile settings.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+OS is either:
+- RedHat/CentOS
+- Debian/Ubuntu
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+This role requires `v_private_users` and `v_private_user_keys` be configured in `./private/vars/{{ ansible_os_family }}.yml`.  For example:
+
+    ---
+    v_private_users:
+      -
+        id: "johndoe"
+        groups: "sshusers,wheel"
+      -
+        id: "janedoe"
+        groups: "sshusers"
+
+    v_private_user_keys:
+      -
+        id: "johndoe"
+        key: "/Users/johndoe/.ssh/id_rsa.pub"
+
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None.
 
 Example Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
+    - hosts: all
+      sudo: yes
+      gather_facts: yes
+      vars_files:
+        - "./private/vars/{{ ansible_os_family }}.yml"
       roles:
-         - { role: username.rolename, x: 42 }
+         - common
+
+TODO
+----
+
+- Investigate combining `v_private_users` and `v_private_user_keys` into a single var and handling users with and without keys correctly in `./tasks/auth.yml`
 
 License
 -------
@@ -35,4 +61,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+https://github.com/craighurley/

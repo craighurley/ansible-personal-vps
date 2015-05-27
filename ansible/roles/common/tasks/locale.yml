@@ -1,6 +1,6 @@
 ---
 - name: set locale
-  locale_gen: name="{{ v_locale_debian }}" state=present
+  locale_gen: name="{{ v_locale }}" state=present
   when: ansible_os_family == "Debian"
   notify:
     - update timezone
@@ -8,7 +8,7 @@
     - locale
 
 - name: set locale
-  command: localectl set-locale LANG="{{ v_locale_redhat }}"
+  command: localectl set-locale LANG="{{ v_locale }}"
   when: ansible_os_family == "RedHat"
   notify:
     - update timezone
