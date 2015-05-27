@@ -34,7 +34,7 @@ Including an example of how to use your role (for instance, with variables passe
 TODO
 ----
 
-- Remove workaround for https://github.com/ansible/ansible-modules-core/pull/999 once Ansible updated includes fix.
+- Remove workaround for SSH service restart on Ubuntu 14.04 once Ansible update includes fix: https://github.com/ansible/ansible-modules-core/pull/999
 
 License
 -------
