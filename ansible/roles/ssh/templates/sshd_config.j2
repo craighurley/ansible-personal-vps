@@ -6,9 +6,12 @@
 Port {{ port }}
 {% endfor %}
 
+{% if v_ssh_listenaddresses is defined %}
 {% for address in v_ssh_listenaddresses %}
 ListenAddress {{ address }}
 {% endfor %}
+{% endif %}
+
 
 Protocol 2
 # HostKeys for protocol version 2
@@ -72,6 +75,9 @@ Subsystem sftp /usr/lib/openssh/sftp-server
 UsePAM yes
 
 UseDNS no
+
+{% if v_ssh_groups is defined %}
 {% for group in v_ssh_groups %}
 AllowGroups {{ group }}
 {% endfor %}
+{% endif %}

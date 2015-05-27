@@ -1,8 +1,8 @@
 ---
-- name: restart ssh Debian
-  # TODO: investigate/fix problem restarting ssh service (ansible v1.9.1 on Ubuntu 14.14 x64)
-  #service: name=ssh state=restarted
-  command: service ssh restart
+- name: restart ssh
+  service: name={{ v_ssh_service }} state=restarted
 
-- name: restart ssh RedHat
-  service: name=sshd state=restarted
+- name: restart ssh Debian
+  # TODO: investigate/fix problem restarting ssh service: https://github.com/ansible/ansible-modules-core/pull/999
+  #service: name={{ v_ssh_service }} state=restarted
+  command: service {{ v_ssh_service }} restart
