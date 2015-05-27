@@ -28,7 +28,9 @@ restrict -6 default ignore
 restrict 127.0.0.1
 restrict -6 ::1
 
+{% if v_ntp_clients is defined %}
 # Allow these clients but don't allow configuration
 {% for client in v_ntp_clients %}
-#restrict {{ client }} nomodify notrap nopeer noquery
+restrict {{ client }} nomodify notrap nopeer noquery
 {% endfor %}
+{% endif %}

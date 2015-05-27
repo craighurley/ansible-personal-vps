@@ -1,13 +1,19 @@
 ---
-- name: install ntp
-  apt: name=ntp state=present
+- name: gather os specific vars
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "../vars/{{ ansible_os_family }}.yml"
+    - "../vars/defaults.yml"
+
+- name: install ntp Debian
+  apt: name={{ v_ntp_package }} state=present
   when: ansible_os_family == "Debian"
   tags:
     - ntp
     - install
 
-- name: install ntp
-  yum: name=ntp state=present
+- name: install ntp RedHat
+  yum: name={{ v_ntp_package }} state=present
   when: ansible_os_family == "RedHat"
   tags:
     - ntp
@@ -15,7 +21,7 @@
 
 - name: ntp configuration file update
   template: src=ntp.conf.j2
-    dest=/etc/ntp.conf
+    dest={{ v_ntp_config }}
     backup=yes
     owner=0 group=0 mode=0644
   notify:

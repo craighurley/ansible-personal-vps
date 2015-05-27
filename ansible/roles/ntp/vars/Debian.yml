@@ -1,0 +1,6 @@
+---
+v_ntp_package: ntp
+
+v_ntp_service: ntp
+
+v_ntp_config: /etc/ntp.conf
