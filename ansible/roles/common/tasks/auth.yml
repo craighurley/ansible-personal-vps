@@ -16,6 +16,8 @@
 - name: add pub keys for users
   authorized_key: user={{ item.id }} key="{{ lookup('file', item.key) }}"
   with_items:
-    - "{{ v_private_user_keys }}"
+    - "{{ v_private_users }}"
+  when: item.key is defined
   tags:
+    - users
     - keys

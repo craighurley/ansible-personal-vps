@@ -13,21 +13,17 @@ OS is either:
 Role Variables
 --------------
 
-This role requires `v_private_users` and `v_private_user_keys` be configured in `./private/vars/{{ ansible_os_family }}.yml`.  For example:
+This role requires `v_private_users` to be configured in `./private/vars/{{ ansible_os_family }}.yml`.  For example:
 
     ---
     v_private_users:
       -
         id: "johndoe"
         groups: "sshusers,wheel"
+        key: "/Users/johndoe/.ssh/id_rsa.pub"
       -
         id: "janedoe"
-        groups: "sshusers"
-
-    v_private_user_keys:
-      -
-        id: "johndoe"
-        key: "/Users/johndoe/.ssh/id_rsa.pub"
+        groups: "wheel"
 
 
 Dependencies
@@ -51,7 +47,7 @@ Including an example of how to use your role (for instance, with variables passe
 TODO
 ----
 
-- Investigate combining `v_private_users` and `v_private_user_keys` into a single var and handling users with and without keys correctly in `./tasks/auth.yml`
+None.
 
 License
 -------
