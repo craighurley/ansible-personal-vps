@@ -3,3 +3,9 @@ v_time_zone: Pacific/Auckland
 
 v_groups:
   - sshusers
+
+v_yum_packages:
+  - bash-completion
+  - nano
+  - nmap
+  - git

@@ -8,3 +8,4 @@
 
 - include: auth.yml
 - include: locale.yml
+- include: yum.yml
