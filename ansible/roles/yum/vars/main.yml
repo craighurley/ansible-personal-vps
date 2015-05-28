@@ -1,0 +1,4 @@
+---
+v_yum_packages:
+  - epel-release
+  - yum-cron

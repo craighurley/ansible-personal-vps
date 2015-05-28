@@ -1,0 +1,23 @@
+---
+- name: install packages
+  yum: name={{ item }} state=present
+  with_items:
+    - "{{ v_yum_packages }}"
+  notify: restart yum-cron
+  tags:
+    - install
+
+- name: configure yum-cron
+  lineinfile:
+    dest: /etc/yum/yum-cron.conf
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    backup: yes
+  with_items:
+    - { regexp: '^update_cmd', line: 'update_cmd = minimal-security' }
+    - { regexp: '^download_updates', line: 'download_updates = yes' }
+    - { regexp: '^apply_updates', line: 'apply_updates = yes' }
+    - { regexp: '^emit_via', line: 'emit_via = email' }
+    - { regexp: '^email_from', line: 'email_from = root@localhost' }
+    - { regexp: '^email_to', line: 'email_to = root' }
+    - { regexp: '^email_host', line: 'email_host = localhost' }
