@@ -6,7 +6,7 @@ Configure yum: add EPEL, configure auto security updates.
 Requirements
 ------------
 
-OS is:
+OS type(s):
 - RedHat/CentOS
 
 Role Variables

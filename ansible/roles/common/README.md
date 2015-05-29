@@ -6,7 +6,7 @@ Configure common items such as groups, users, locale and profile settings.
 Requirements
 ------------
 
-OS is either:
+OS type(s):
 - RedHat/CentOS
 - Debian/Ubuntu
 
@@ -33,8 +33,6 @@ None.
 
 Example Playbook
 ----------------
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
     - hosts: all
       sudo: yes
