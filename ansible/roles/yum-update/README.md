@@ -1,7 +1,7 @@
 Ansible role: yum-update
 ========================
 
-Update OS.  This role updates the OS and be included when initially provisioning a server.  It can also be called on it's own to perform an update any time in the future.
+This role updates all packages to the latest version and can be included when initially provisioning a server.  It can also be called on it's own to perform an update any time in the future.
 
 Requirements
 ------------
