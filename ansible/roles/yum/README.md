@@ -1,7 +1,7 @@
 Ansible role: yum
 =================
 
-Configure yum: add EPEL, configure auto security updates.
+Configure yum: add EPEL, enable auto security updates.
 
 Requirements
 ------------
@@ -12,7 +12,8 @@ OS type(s):
 Role Variables
 --------------
 
-TODO.
+`v_yum_packages`, a list of packages to install.
+`v_yum_cron_*`, yum-cron settings.
 
 Dependencies
 ------------
@@ -31,8 +32,7 @@ Example Playbook
 TODO
 ----
 
-- Add yum cache update
-- Switch from lineinfile to template when modifying yum-cron.conf
+None.
 
 License
 -------

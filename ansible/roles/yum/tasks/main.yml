@@ -3,21 +3,18 @@
   yum: name={{ item }} state=present
   with_items:
     - "{{ v_yum_packages }}"
+  when: ansible_os_family == "RedHat"
   notify: restart yum-cron
   tags:
-    - install
+    - yum
 
 - name: configure yum-cron
-  lineinfile:
-    dest: /etc/yum/yum-cron.conf
-    regexp: "{{ item.regexp }}"
-    line: "{{ item.line }}"
-    backup: yes
-  with_items:
-    - { regexp: '^update_cmd', line: 'update_cmd = minimal-security' }
-    - { regexp: '^download_updates', line: 'download_updates = yes' }
-    - { regexp: '^apply_updates', line: 'apply_updates = yes' }
-    - { regexp: '^emit_via', line: 'emit_via = email' }
-    - { regexp: '^email_from', line: 'email_from = root@localhost' }
-    - { regexp: '^email_to', line: 'email_to = root' }
-    - { regexp: '^email_host', line: 'email_host = localhost' }
+  template: src=yum-cron.conf.j2
+    dest={{ v_yum_cron_config }}
+    backup=yes
+    owner=0 group=0 mode=0644
+  when: ansible_os_family == "RedHat"
+  notify:
+    - restart ssh
+  tags:
+    - yum
