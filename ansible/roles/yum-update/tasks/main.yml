@@ -1,0 +1,19 @@
+---
+- name: clean yum cache
+  command: yum clean all
+  when: ansible_os_family == "RedHat"
+  tags:
+    - yum
+
+- name: update yum cache
+  command: yum makecache
+  when: ansible_os_family == "RedHat"
+  tags:
+    - yum
+
+- name: yum update everything to the latest version
+  yum: name=* state=latest
+  when: ansible_os_family == "RedHat"
+  tags:
+    - yum
+    - update
