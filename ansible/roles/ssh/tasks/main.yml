@@ -1,10 +1,4 @@
 ---
-- name: gather os specific vars
-  include_vars: "{{ item }}"
-  with_first_found:
-    - "../vars/{{ ansible_os_family }}.yml"
-    - "../vars/defaults.yml"
-
 - name: sshd configuration file update
   template: src=sshd_config.j2
     dest={{ v_ssh_config }}
