@@ -8,11 +8,13 @@
   pre_tasks:
 
   roles:
+    - users
     - ssh
     #- yum-update
     - yum
+    - selinux
     - ntp
-    - common
+    - locale
 
   tasks:
 
