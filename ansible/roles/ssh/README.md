@@ -8,7 +8,6 @@ Requirements
 
 OS type(s):
 - RedHat/CentOS
-- Debian/Ubuntu
 
 Role Variables
 --------------
@@ -18,7 +17,8 @@ TODO.
 Dependencies
 ------------
 
-None.
+    dependencies:
+      - { role: users }
 
 Example Playbook
 ----------------
@@ -32,7 +32,7 @@ Example Playbook
 TODO
 ----
 
-- Remove workaround for SSH service restart on Ubuntu 14.04 once Ansible update includes fix: https://github.com/ansible/ansible-modules-core/pull/999
+None.
 
 License
 -------

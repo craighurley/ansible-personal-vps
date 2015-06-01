@@ -8,7 +8,6 @@ Requirements
 
 OS type(s):
 - RedHat/CentOS
-- Debian/Ubuntu
 
 Role Variables
 --------------
