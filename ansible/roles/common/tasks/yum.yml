@@ -1,7 +1,0 @@
----
-- name: install packages
-  yum: name={{ item }} state=present
-  with_items:
-    - "{{ v_yum_packages }}"
-  tags:
-    - install

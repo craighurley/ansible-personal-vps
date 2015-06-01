@@ -2,6 +2,10 @@
 v_yum_packages:
   - epel-release
   - yum-cron
+  - bash-completion
+  - nano
+  - nmap
+  - git
 
 v_yum_cron_config: /etc/yum/yum-cron.conf
 v_yum_cron_update_cmd: "minimal-security"

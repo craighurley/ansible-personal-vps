@@ -1,14 +1,13 @@
-Ansible role: common
-====================
+Ansible role: users
+===================
 
-Configure common items such as groups, users, locale and profile settings.
+Add and configure groups and users.
 
 Requirements
 ------------
 
 OS type(s):
 - RedHat/CentOS
-- Debian/Ubuntu
 
 Role Variables
 --------------
@@ -40,7 +39,7 @@ Example Playbook
       vars_files:
         - "./private/vars/{{ ansible_os_family }}.yml"
       roles:
-         - common
+         - users
 
 TODO
 ----

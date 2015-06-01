@@ -1,7 +1,7 @@
-Ansible role: ntp
-=================
+Ansible role: selinux
+======================
 
-Install and configure NTP.
+Enable and apply various settings to selinux.
 
 Requirements
 ------------
@@ -12,7 +12,7 @@ OS type(s):
 Role Variables
 --------------
 
-TODO.
+None.
 
 Dependencies
 ------------
@@ -26,10 +26,12 @@ Example Playbook
       sudo: yes
       gather_facts: yes
       roles:
-         - ntp
+         - selinux
 
 TODO
 ----
+
+- The restart and wait for server handlers are not behaving correctly.
 
 License
 -------

@@ -1,7 +1,7 @@
-Ansible role: ntp
-=================
+Ansible role: locale
+====================
 
-Install and configure NTP.
+Configure locale settings.
 
 Requirements
 ------------
@@ -12,7 +12,7 @@ OS type(s):
 Role Variables
 --------------
 
-TODO.
+TODO
 
 Dependencies
 ------------
@@ -26,10 +26,12 @@ Example Playbook
       sudo: yes
       gather_facts: yes
       roles:
-         - ntp
+         - locale
 
 TODO
 ----
+
+None.
 
 License
 -------

@@ -1,0 +1,10 @@
+---
+- name: set locale
+  command: localectl set-locale LANG="{{ v_locale }}"
+  tags:
+    - locale
+
+- name: set timezone
+  file: src=/usr/share/zoneinfo/"{{ v_time_zone }}" dest=/etc/localtime state=link force=yes
+  tags:
+    - locale

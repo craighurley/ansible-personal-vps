@@ -1,30 +1,10 @@
 ---
-- name: gather os specific vars
-  include_vars: "{{ item }}"
-  with_first_found:
-    - "../vars/{{ ansible_os_family }}.yml"
-    - "../vars/defaults.yml"
-
-# TODO: remove once ssh restart bug on Ubuntu is fixed https://github.com/ansible/ansible-modules-core/pull/999
 - name: sshd configuration file update
   template: src=sshd_config.j2
     dest={{ v_ssh_config }}
     backup=yes
     owner=0 group=0 mode=0644
     validate='/usr/sbin/sshd -T -f %s'
-  when: ansible_os_family == "Debian"
-  notify:
-    - restart ssh Debian
-  tags:
-    - ssh
-
-- name: sshd configuration file update
-  template: src=sshd_config.j2
-    dest={{ v_ssh_config }}
-    backup=yes
-    owner=0 group=0 mode=0644
-    validate='/usr/sbin/sshd -T -f %s'
-  when: ansible_os_family == "RedHat"
   notify:
     - restart ssh
   tags:

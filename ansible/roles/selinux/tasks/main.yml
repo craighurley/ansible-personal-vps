@@ -1,0 +1,8 @@
+---
+- name: enable selinux
+  selinux: policy=targeted state=enforcing
+#  notify:
+#    - restart server
+#    - wait for server to restart
+  tags:
+    - selinux

@@ -1,8 +1,3 @@
 ---
 - name: restart ssh
   service: name={{ v_ssh_service }} state=restarted
-
-- name: restart ssh Debian
-  # TODO: investigate/fix problem restarting ssh service: https://github.com/ansible/ansible-modules-core/pull/999
-  #service: name={{ v_ssh_service }} state=restarted
-  command: service {{ v_ssh_service }} restart

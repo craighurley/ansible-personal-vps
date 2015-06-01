@@ -1,4 +1,0 @@
----
-v_ssh_service: ssh
-
-v_ssh_config: /etc/ssh/sshd_config
