@@ -31,7 +31,7 @@ Example Playbook
 TODO
 ----
 
-None.
+- The restart and wait for server handlers are not behaving correctly.
 
 License
 -------
