@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - users
+    - ssh
+    - yum-update
+    - yum
+    - selinux
+    - ntp
+    - locale
