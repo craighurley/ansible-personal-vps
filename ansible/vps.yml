@@ -4,6 +4,9 @@
   gather_facts: yes
   vars_files:
     - "./private/vars/{{ ansible_os_family }}.yml"
+  vars:
+    v_delay: 120
+    v_timeout: 180
 
   pre_tasks:
 
@@ -19,3 +22,16 @@
   tasks:
 
   post_tasks:
+  - name: restart server
+    command: shutdown -r +1 "Restart triggered by Ansible"
+    async: 0
+    poll: 0
+
+  - name: wait for server to restart
+    local_action:
+      module: wait_for
+        host={{ ansible_ssh_host }}
+        port={{ ansible_ssh_port }}
+        delay={{ v_delay }}
+        timeout={{ v_timeout }}
+    sudo: no
