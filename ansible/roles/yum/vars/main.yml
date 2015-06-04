@@ -6,7 +6,9 @@ v_yum_packages:
   - nano
   - nmap
   - git
+  - tmux
 
+v_yum_cron_service: yum-cron
 v_yum_cron_config: /etc/yum/yum-cron.conf
 v_yum_cron_update_cmd: "minimal-security"
 v_yum_cron_update_messages: "yes"

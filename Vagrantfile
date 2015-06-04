@@ -8,7 +8,7 @@ boxes = [
     :name => "vps-centos",
     :description => "Personal VPS",
     :ansible_playbook => "ansible/vps.yml",
-    :ansible_log_level => "vv",
+    :ansible_log_level => "v",
     :cpus => "2",
     :cpu_execution_cap => "77",
     :ram => "1024"
@@ -19,12 +19,19 @@ NIC = 'en0: Wi-Fi (AirPort)'
 HOSTNAME_PREFIX = `hostname`.chomp.downcase[/[^.]+/]
 
 Vagrant.configure(2) do |config|
+  # Enable hostmanager plugin
+  config.hostmanager.enabled = true
+  config.hostmanager.manage_host = true
+  config.hostmanager.ignore_private_ip = false
+  config.hostmanager.include_offline = true
+
   boxes.each do |box|
     config.vm.define box[:name] do |box_config|
       # OS and hostname
       box_config.vm.box = box[:box]
       box_config.vm.box_version = box[:box_version]
-      box_config.vm.hostname = "#{HOSTNAME_PREFIX}-" + box[:name]
+      #box_config.vm.hostname = "#{HOSTNAME_PREFIX}-" + box[:name]
+      box_config.vm.hostname = box[:name]
 
       # Networking
       # By default a NAT interface is added.  Other networks can be added as follows:

@@ -1,0 +1,23 @@
+---
+language: python
+python: "2.7"
+
+env:
+  - ANSIBLE_VERSION=1.9.1
+
+before_install:
+  - sudo apt-get update -qq
+
+  # Remove bash
+  - sudo apt-get remove --purge bash || true
+
+install:
+  # Install Ansible.
+  - pip install ansible==$ANSIBLE_VERSION
+
+  # Add ansible.cfg to pick up roles path.
+  - printf "[defaults]\nroles_path=ansible/roles" > ansible.cfg
+
+script:
+  # Check the role/playbook's syntax.
+  - ansible-playbook -i tests/inventory tests/test.yml --syntax-check

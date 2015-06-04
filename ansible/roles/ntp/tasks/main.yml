@@ -1,5 +1,5 @@
 ---
-- name: install ntp RedHat
+- name: install ntp
   yum: name={{ v_ntp_package }} state=present
   tags:
     - ntp
