@@ -5,12 +5,6 @@ python: "2.7"
 env:
   - ANSIBLE_VERSION=1.9.1
 
-before_install:
-  - sudo apt-get update -qq
-
-  # Remove bash
-  - sudo apt-get remove --purge bash || true
-
 install:
   # Install Ansible.
   - pip install ansible==$ANSIBLE_VERSION
