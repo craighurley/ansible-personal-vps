@@ -21,4 +21,4 @@ notifications:
   irc:
     channels:
       - "chat.freenode.net##phatypus"
-    skip_join: false
+    use_notice: true
