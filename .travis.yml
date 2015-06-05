@@ -21,5 +21,3 @@ notifications:
   irc:
     channels:
       - "chat.freenode.net##phatypus"
-    on_success: always
-    on_failure: always
