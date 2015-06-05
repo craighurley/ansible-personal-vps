@@ -3,7 +3,6 @@
   yum: name={{ item }} state=present
   with_items:
     - "{{ v_yum_packages }}"
-  when: ansible_os_family == "RedHat"
   notify: restart yum-cron
   tags:
     - yum
@@ -13,7 +12,6 @@
     dest={{ v_yum_cron_config }}
     backup=yes
     owner=0 group=0 mode=0644
-  when: ansible_os_family == "RedHat"
   notify:
     - restart ssh
   tags:
