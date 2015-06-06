@@ -14,7 +14,7 @@
     - users
     - ssh
     #- yum-update
-    - yum
+    - yum-common
     - selinux
     - ntp
     - locale
