@@ -1,5 +1,5 @@
 ---
-v_yum_packages:
+v_yum_common_packages:
   - epel-release
   - yum-cron
   - bash-completion

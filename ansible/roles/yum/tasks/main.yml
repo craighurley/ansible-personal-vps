@@ -1,9 +1,8 @@
 ---
-- name: install packages
+- name: install common packages
   yum: name={{ item }} state=present
   with_items:
-    - "{{ v_yum_packages }}"
-  notify: restart yum-cron
+    - "{{ v_yum_common_packages }}"
   tags:
     - yum
 
@@ -13,6 +12,6 @@
     backup=yes
     owner=0 group=0 mode=0644
   notify:
-    - restart ssh
+    - restart yum-cron
   tags:
     - yum
