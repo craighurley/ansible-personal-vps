@@ -17,7 +17,7 @@ None.
 Dependencies
 ------------
 
-None.
+- Adding an additional port to the type ssh_port_t cannot be done until after selinux is enabled and the server restarted.
 
 Example Playbook
 ----------------

@@ -1,0 +1,4 @@
+---
+- name: restart ssh
+  service: name={{ v_ssh_service }} enabled=yes state=restarted
+
