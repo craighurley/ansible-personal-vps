@@ -6,6 +6,7 @@
     owner=0 group=0 mode=0644
     validate='/usr/sbin/sshd -T -f %s'
   notify:
+    - delete old ssh keys
     - restart ssh
   tags:
     - ssh
