@@ -28,7 +28,6 @@
     backup=no
     owner=0 group=0 mode=0700
   notify:
-    - apply iptables rules
-    - save iptables rules
+    - restart iptables
   tags:
     - firewall

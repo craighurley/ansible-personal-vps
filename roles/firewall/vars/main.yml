@@ -1,5 +1,5 @@
 ---
-v_firewall_config: /tmp/iptables.sh
+v_firewall_config: /etc/sysconfig/iptables
 
 #v_firewall_inbound_ports:
 #  -
