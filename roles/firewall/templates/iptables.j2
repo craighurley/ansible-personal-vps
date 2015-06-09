@@ -1,0 +1,42 @@
+#{{ ansible_managed }}
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+:LOG-AND-ACCEPT - [0:0]
+:LOG-AND-DROP - [0:0]
+:RATE-LIMIT-HIGH - [0:0]
+:RATE-LIMIT-LOW - [0:0]
+:RATE-LIMIT-MED - [0:0]
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -s 127.0.0.0/8 -d 127.0.0.0/8 -i lo -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 22 -m state --state NEW -j RATE-LIMIT-LOW
+{% if v_firewall_inbound_ports is defined %}
+{% for item in v_firewall_inbound_ports %}
+-A INPUT -p tcp -m {{ item.protocol }} --dport {{ item.port }} -m state --state NEW -j ACCEPT
+{% endfor %}
+{% endif %}
+-A LOG-AND-ACCEPT -m limit --limit 10/min -j LOG --log-prefix "[iptables-accept] " --log-level 6
+-A LOG-AND-ACCEPT -j ACCEPT
+-A LOG-AND-DROP -m limit --limit 10/min -j LOG --log-prefix "[iptables-drop] " --log-level 6
+-A LOG-AND-DROP -j DROP
+-A RATE-LIMIT-HIGH -m recent --update --seconds 5 --hitcount 20 --name rate-limit-high --mask 255.255.255.255 --rsource -j DROP
+-A RATE-LIMIT-HIGH -m recent --set --name rate-limit-high --mask 255.255.255.255 --rsource -j ACCEPT
+-A RATE-LIMIT-LOW -m recent --update --seconds 5 --hitcount 5 --name rate-limit-low --mask 255.255.255.255 --rsource -j DROP
+-A RATE-LIMIT-LOW -m recent --set --name rate-limit-low --mask 255.255.255.255 --rsource -j ACCEPT
+-A RATE-LIMIT-MED -m recent --update --seconds 5 --hitcount 10 --name rate-limit-med --mask 255.255.255.255 --rsource -j DROP
+-A RATE-LIMIT-MED -m recent --set --name rate-limit-med --mask 255.255.255.255 --rsource -j ACCEPT
+COMMIT
+*nat
+:PREROUTING ACCEPT [0:0]
+:INPUT ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+:POSTROUTING ACCEPT [0:0]
+COMMIT
+*mangle
+:PREROUTING ACCEPT [0:0]
+:INPUT ACCEPT [0:0]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+:POSTROUTING ACCEPT [0:0]
+COMMIT

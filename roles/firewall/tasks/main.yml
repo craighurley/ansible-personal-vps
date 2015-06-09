@@ -1,0 +1,33 @@
+---
+- name: disable ipv6
+  lineinfile: dest=/etc/sysctl.conf line="net.ipv6.conf.all.disable_ipv6 = 1"
+  notify:
+    - reload sysctl.conf
+  tags:
+    - firewall
+
+- name: install iptables services
+  yum: name=iptables-services state=present
+  tags:
+    - firewall
+    - yum
+
+- name: disable firewalld
+  service: name=firewalld enabled=no state=stopped
+  tags:
+    - firewall
+
+- name: enable iptables
+  service: name=iptables enabled=yes state=started
+  tags:
+    - firewall
+
+- name: copy iptables template
+  template: src=iptables.j2
+    dest={{ v_firewall_config }}
+    backup=no
+    owner=0 group=0 mode=0700
+  notify:
+    - restart iptables
+  tags:
+    - firewall
