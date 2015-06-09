@@ -3,7 +3,8 @@ v_selinux_yum_packages:
   - policycoreutils-python
   - setroubleshoot
 
-# Additional port that SSH may listen on.  Comment out if you don't want SSH listening on this additional port.
+# Additional port that SSH may listen on.  Comment out if you don't want SSH
+# listening on this additional port.
 v_selinux_additional_ssh_port_t: "443"
 
 v_ssh_service: sshd
