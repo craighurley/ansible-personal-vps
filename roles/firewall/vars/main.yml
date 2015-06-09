@@ -1,0 +1,7 @@
+---
+v_firewall_config: /tmp/iptables.sh
+
+#v_firewall_inbound_ports:
+#  -
+#    port: "443"
+#    protocol: "tcp"

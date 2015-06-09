@@ -1,0 +1,9 @@
+---
+- name: reload sysctl.conf
+  shell: sysctl -p
+
+- name: apply iptables rules
+  shell: "{{ v_firewall_config }}"
+
+- name: save iptables rules
+  shell: /sbin/service iptables save

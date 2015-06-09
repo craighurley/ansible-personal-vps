@@ -1,0 +1,58 @@
+#!/bin/bash
+#{{ ansible_managed }}
+
+PATH='/sbin'
+
+# flush the tables to apply changes
+iptables -F
+iptables -X
+iptables -t nat -F
+iptables -t nat -X
+iptables -t mangle -F
+iptables -t mangle -X
+
+# default policy to drop 'everything' but our output to internet
+iptables -P FORWARD DROP
+iptables -P INPUT   DROP
+iptables -P OUTPUT  ACCEPT
+
+# chains
+iptables -N LOG-AND-DROP
+iptables -A LOG-AND-DROP -j LOG --log-prefix '[iptables-drop] ' --log-level 6 -m limit --limit 10/m
+iptables -A LOG-AND-DROP -j DROP
+
+iptables -N LOG-AND-ACCEPT
+iptables -A LOG-AND-ACCEPT -j LOG --log-prefix '[iptables-accept] ' --log-level 6 -m limit --limit 10/m
+iptables -A LOG-AND-ACCEPT -j ACCEPT
+
+iptables -N RATE-LIMIT-HIGH
+iptables -A RATE-LIMIT-HIGH -m recent --update --seconds 5 --hitcount 20 --name rate-limit-high -j DROP
+iptables -A RATE-LIMIT-HIGH -m recent --set --name rate-limit-high -j ACCEPT
+
+iptables -N RATE-LIMIT-MED
+iptables -A RATE-LIMIT-MED -m recent --update --seconds 5 --hitcount 10 --name rate-limit-med -j DROP
+iptables -A RATE-LIMIT-MED -m recent --set --name rate-limit-med -j ACCEPT
+
+iptables -N RATE-LIMIT-LOW
+iptables -A RATE-LIMIT-LOW -m recent --update --seconds 5 --hitcount 5 --name rate-limit-low -j DROP
+iptables -A RATE-LIMIT-LOW -m recent --set --name rate-limit-low -j ACCEPT
+
+#
+# Rules
+#
+
+# allow established connections (the responses to our outgoing traffic)
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+# allow local programs that use loopback
+iptables -A INPUT -s 127.0.0.0/8 -d 127.0.0.0/8 -i lo -j ACCEPT
+
+# considering that we are configuring this system over SSH, always allows SSH
+iptables -A INPUT -p tcp --dport 22 -m state --state NEW -j RATE-LIMIT-LOW
+
+{% if v_firewall_inbound_ports is defined %}
+# configure any additional rules
+{% for item in v_firewall_inbound_ports %}
+iptables -A INPUT -p {{ item.protocol }} --dport {{ item.port }} -m state --state NEW -j ACCEPT
+{% endfor %}
+{% endif %}
