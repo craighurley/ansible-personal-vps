@@ -5,6 +5,8 @@
 Port {{ port }}
 {% endfor %}
 
+AddressFamily inet
+
 {% if v_ssh_listenaddresses is defined %}
 {% for address in v_ssh_listenaddresses %}
 ListenAddress {{ address }}
@@ -14,8 +16,8 @@ ListenAddress {{ address }}
 
 Protocol 2
 # HostKeys for protocol version 2
-HostKey /etc/ssh/ssh_host_rsa_key
-HostKey /etc/ssh/ssh_host_ecdsa_key
+#HostKey /etc/ssh/ssh_host_rsa_key
+#HostKey /etc/ssh/ssh_host_ecdsa_key
 
 #Privilege Separation is turned on for security
 UsePrivilegeSeparation yes

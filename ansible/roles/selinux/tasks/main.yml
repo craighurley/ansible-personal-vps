@@ -1,5 +1,0 @@
----
-- name: enable selinux
-  selinux: policy=targeted state=enforcing
-  tags:
-    - selinux

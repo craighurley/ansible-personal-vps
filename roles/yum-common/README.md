@@ -1,7 +1,7 @@
-Ansible role: yum
-=================
+Ansible role: yum-common
+========================
 
-Configure yum: add EPEL, enable auto security updates.
+Configure yum: add EPEL, install common packages, enable auto security updates.
 
 Requirements
 ------------
@@ -27,7 +27,7 @@ Example Playbook
       sudo: yes
       gather_facts: yes
       roles:
-         - yum
+         - yum-common
 
 TODO
 ----

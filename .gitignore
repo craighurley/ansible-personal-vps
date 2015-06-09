@@ -1,2 +1,4 @@
-.vagrant/
-temp/
+*.log
+.vagrant
+private
+temp
