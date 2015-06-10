@@ -5,6 +5,6 @@
     - locale
 
 - name: set timezone
-  file: src=/usr/share/zoneinfo/"{{ v_time_zone }}" dest=/etc/localtime state=link force=yes
+  command: timedatectl set-timezone "{{ v_time_zone }}"
   tags:
     - locale
