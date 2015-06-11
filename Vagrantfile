@@ -8,9 +8,9 @@ boxes = [
     :name => "vps-centos",
     :description => "Personal VPS",
     :ansible_playbook => "vps.yml",
-    :ansible_log_level => "vv",
-    :cpus => "2",
-    :cpu_execution_cap => "77",
+    :ansible_log_level => "v",
+    :cpus => "1",
+    :cpu_execution_cap => "90",
     :ram => "1024"
   },
 ]
