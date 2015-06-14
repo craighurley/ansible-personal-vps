@@ -5,7 +5,6 @@ v_ssh_config: /etc/ssh/sshd_config
 
 v_ssh_ports:
   - 22
-  - 443
 
 v_ssh_listenaddresses:
   - 0.0.0.0
