@@ -4,9 +4,6 @@
 # get details of boxes to build
 boxes = YAML.load_file('boxes.yml')
 
-# default NIC
-NIC = 'en0: Wi-Fi (AirPort)'
-
 Vagrant.configure(2) do |config|
   # Enable hostmanager plugin
   config.hostmanager.enabled = true
@@ -21,11 +18,17 @@ Vagrant.configure(2) do |config|
       box_config.vm.box_version = box["box_version"]
       box_config.vm.hostname = box["name"]
 
-      # Networking
-      # By default a NAT interface is added.  Other networks can be added as follows:
+      # Networking.  By default a NAT interface is added.
+      # Add a internal network like this:
       #box_config.vm.network "private_network", type: "dhcp", virtualbox__intnet: true
-      #box_config.vm.network "private_network", type: "dhcp", virtualbox__intnet: "mynetwork"
-      #box_config.vm.network "public_network", bridge: NIC
+      # Add a bridged network
+      if box["public_network"]
+        if box["public_network"]["ip"]
+          box_config.vm.network "public_network", bridge: box["public_network"]["bridge"], ip: box["public_network"]["ip"]
+        else
+          box_config.vm.network "public_network", bridge: box["public_network"]["bridge"]
+        end
+      end
 
       # Shared folders
       box_config.vm.synced_folder ".", "/vagrant", disabled: true
