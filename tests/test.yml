@@ -10,3 +10,4 @@
     - ntp
     - locale
     - firewall
+    - bash
