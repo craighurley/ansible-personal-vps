@@ -3,24 +3,20 @@ Ansible role: locale
 
 Configure locale settings.
 
-Requirements
-------------
+# Requirements
 
 OS type(s):
 - RedHat/CentOS
 
-Role Variables
---------------
+# Role Variables
 
 TODO
 
-Dependencies
-------------
+# Dependencies
 
 None.
 
-Example Playbook
-----------------
+# Example Playbook
 
     - hosts: all
       sudo: yes
@@ -28,17 +24,14 @@ Example Playbook
       roles:
          - locale
 
-TODO
-----
+# TODO
 
 None.
 
-License
--------
+# License
 
 BSD
 
-Author Information
-------------------
+# Author Information
 
 https://github.com/craighurley/

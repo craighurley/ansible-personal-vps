@@ -3,24 +3,20 @@ Ansible role: ntp
 
 Install and configure NTP.
 
-Requirements
-------------
+# Requirements
 
 OS type(s):
 - RedHat/CentOS
 
-Role Variables
---------------
+# Role Variables
 
 TODO.
 
-Dependencies
-------------
+# Dependencies
 
 None.
 
-Example Playbook
-----------------
+# Example Playbook
 
     - hosts: all
       sudo: yes
@@ -28,15 +24,12 @@ Example Playbook
       roles:
          - ntp
 
-TODO
-----
+# TODO
 
-License
--------
+# License
 
 BSD
 
-Author Information
-------------------
+# Author Information
 
 https://github.com/craighurley/

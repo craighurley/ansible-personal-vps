@@ -3,24 +3,20 @@ Ansible role: yum-update
 
 This role updates all packages to the latest version and can be included when initially provisioning a server.  It can also be called on it's own to perform an update any time in the future.
 
-Requirements
-------------
+# Requirements
 
 OS type(s):
 - RedHat/CentOS
 
-Role Variables
---------------
+# Role Variables
 
 None.
 
-Dependencies
-------------
+# Dependencies
 
 None.
 
-Example Playbook
-----------------
+# Example Playbook
 
     - hosts: all
       sudo: yes
@@ -30,17 +26,14 @@ Example Playbook
 
     ansible-playbook ansible/update.yml -i ./path/to/inventory --user=johndoe --private-key=./path/to/id_rsa
 
-TODO
-----
+# TODO
 
 None.
 
-License
--------
+# License
 
 BSD
 
-Author Information
-------------------
+# Author Information
 
 https://github.com/craighurley/
