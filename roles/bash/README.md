@@ -3,27 +3,23 @@ Ansible role: bash
 
 Configure bash for all users.
 
-Requirements
-------------
+# Requirements
 
 OS type(s):
 - RedHat/CentOS
 
-Role Variables
---------------
+# Role Variables
 
-Set the colour of the bash prompt to red, yellow or green with `v_bash_prompt_colour`:
-- 1: red, for PROD
-- 3: yellow, for TEST
-- 2: green, for DEV
+Set the colour of the bash prompt to red, yellow or green with `v_environment`:
+- production = red
+- test = yellow
+- development = green (default)
 
-Dependencies
-------------
+# Dependencies
 
 None.
 
-Example Playbook
-----------------
+# Example Playbook
 
     - hosts: all
       sudo: yes
@@ -31,17 +27,14 @@ Example Playbook
       roles:
          - bash
 
-TODO
-----
+# TODO
 
-Improve setting colour of bash prompt.
+None.
 
-License
--------
+# License
 
 BSD
 
-Author Information
-------------------
+# Author Information
 
 https://github.com/craighurley/

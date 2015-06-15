@@ -1,2 +1,0 @@
-# coloured prompt
-export PS1="\[$(tput setaf {{ v_bash_prompt_colour }})\]\n\u@\h: \w\n\\$ \[$(tput sgr0)\]"

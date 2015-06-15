@@ -5,13 +5,13 @@
   vars_files:
     - "./private/vars/users.yml"
   vars:
+    v_environment: development
     v_restart_delay: 90
     v_restart_timeout: 180
 
   pre_tasks:
 
   roles:
-    - users
     - ssh
     #- yum-update
     - yum-common

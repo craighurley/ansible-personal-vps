@@ -47,6 +47,9 @@ Vagrant.configure(2) do |config|
       box_config.vm.provision :ansible do |ansible|
         ansible.playbook = box["ansible_playbook"]
         ansible.verbose = box["ansible_log_level"]
+        ansible.extra_vars = {
+          v_environment: box["environment"]
+        }
       end
     end
   end
