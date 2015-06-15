@@ -7,7 +7,6 @@
     - .bash_prompt
     - .bashrc
     - .exports
-    - .git_prompt
     - .gitignore_global
     - .inputrc
     - .tmux.conf
@@ -22,7 +21,6 @@
     - .bash_prompt
     - .bashrc
     - .exports
-    - .git_prompt
     - .gitignore_global
     - .inputrc
     - .tmux.conf
@@ -37,7 +35,6 @@
     - .bash_prompt
     - .bashrc
     - .exports
-    - .git_prompt
     - .gitignore_global
     - .inputrc
     - .tmux.conf
