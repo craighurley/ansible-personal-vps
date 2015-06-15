@@ -9,6 +9,7 @@
     - .exports
     - .gitignore_global
     - .inputrc
+    - .path
     - .tmux.conf
   tags:
     - bash
@@ -31,6 +32,7 @@
     - .exports
     - .gitignore_global
     - .inputrc
+    - .path
     - .tmux.conf
   tags:
     - bash
@@ -53,6 +55,7 @@
     - .exports
     - .gitignore_global
     - .inputrc
+    - .path
     - .tmux.conf
   tags:
     - bash
