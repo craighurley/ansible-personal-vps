@@ -14,7 +14,7 @@
     - bash
 
 - name: configure bash prompt for skel
-  template: src=.bash_prompt
+  template: src=.bash_prompt.j2
     dest=/etc/skel/.bash_prompt
     backup=no
     owner=root group=root mode=0644
@@ -36,7 +36,7 @@
     - bash
 
 - name: configure bash prompt for root
-  template: src=.bash_prompt
+  template: src=.bash_prompt.j2
     dest=/root/.bash_prompt
     backup=no
     owner=root group=root mode=0644
@@ -58,7 +58,7 @@
     - bash
 
 - name: configure bash prompt for vagrant
-  template: src=.bash_prompt
+  template: src=.bash_prompt.j2
     dest=/home/vagrant/.bash_prompt
     backup=no
     owner=vagrant group=vagrant mode=0644

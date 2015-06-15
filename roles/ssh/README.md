@@ -3,25 +3,21 @@ Ansible role: ssh
 
 Configure SSH.
 
-Requirements
-------------
+# Requirements
 
 OS type(s):
 - RedHat/CentOS
 
-Role Variables
---------------
+# Role Variables
 
 TODO.
 
-Dependencies
-------------
+# Dependencies
 
     dependencies:
       - { role: users }
 
-Example Playbook
-----------------
+# Example Playbook
 
     - hosts: all
       sudo: yes
@@ -29,17 +25,14 @@ Example Playbook
       roles:
          - ssh
 
-TODO
-----
+# TODO
 
 None.
 
-License
--------
+# License
 
 BSD
 
-Author Information
-------------------
+# Author Information
 
 https://github.com/craighurley/

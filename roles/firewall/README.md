@@ -3,14 +3,12 @@ Ansible role: firewall
 
 Disable firewalld, install and enable iptables, then configure iptables rules.
 
-Requirements
-------------
+# Requirements
 
 OS type(s):
 - RedHat/CentOS
 
-Role Variables
---------------
+# Role Variables
 
 `v_firewall_inbound_ports`, a list of ports to open.
 
@@ -25,13 +23,11 @@ Role Variables
 
 Note: Allowing tcp/22 is hardcoded in the template.
 
-Dependencies
-------------
+# Dependencies
 
 None.
 
-Example Playbook
-----------------
+# Example Playbook
 
     - hosts: all
       sudo: yes
@@ -39,15 +35,14 @@ Example Playbook
       roles:
          - firewall
 
-TODO
-----
+# TODO
 
-License
--------
+None.
+
+# License
 
 BSD
 
-Author Information
-------------------
+# Author Information
 
 https://github.com/craighurley/

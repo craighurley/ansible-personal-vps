@@ -3,14 +3,12 @@ Ansible role: users
 
 Add and configure groups and users.
 
-Requirements
-------------
+# Requirements
 
 OS type(s):
 - RedHat/CentOS
 
-Role Variables
---------------
+# Role Variables
 
 This role requires `v_private_users` to be configured in `./private/vars/users.yml`.  For example:
 
@@ -39,13 +37,11 @@ Once the library is ready, SHA512 password values can then be generated as follo
 
 Source: http://docs.ansible.com/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module
 
-Dependencies
-------------
+# Dependencies
 
 None.
 
-Example Playbook
-----------------
+# Example Playbook
 
     - hosts: all
       sudo: yes
@@ -55,17 +51,14 @@ Example Playbook
       roles:
          - users
 
-TODO
-----
+# TODO
 
 None.
 
-License
--------
+# License
 
 BSD
 
-Author Information
-------------------
+# Author Information
 
 https://github.com/craighurley/

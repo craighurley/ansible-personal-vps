@@ -1,0 +1,11 @@
+# COLOURED PROMPT
+# production = red
+# test = yellow
+# development = green (default)
+{% if v_environment|lower == "production" %}
+export PS1="\[$(tput setaf 1)\]\n\u@\h (production): \w\n\\$ \[$(tput sgr0)\]"
+{% elif v_environment|lower == "test" %}
+export PS1="\[$(tput setaf 3)\]\n\u@\h (test): \w\n\\$ \[$(tput sgr0)\]"
+{% else %}
+export PS1="\[$(tput setaf 2)\]\n\u@\h (development): \w\n\\$ \[$(tput sgr0)\]"
+{% endif %}
