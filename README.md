@@ -17,7 +17,7 @@ Ansible will:
 - Install ZNC in a docker container.
 
 # boxes.yml
-This file contains a definition of the box(es) that you want to create.  At a minimum, you need the following:
+This file contains a definition of the box(es) that you want to create.
 
 ## Required settings
     - name: vps-centos-1
