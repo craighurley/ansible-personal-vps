@@ -31,7 +31,7 @@ Example Playbook
 TODO
 ----
 
-- Add var to determine colour of prompt (green/dev, yellow/test, red/prod)
+Improve setting colour of bash prompt.
 
 License
 -------

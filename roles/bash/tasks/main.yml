@@ -1,10 +1,10 @@
 ---
+# skeleton
 - name: configure bash for skel
   copy: "src={{ item }} dest=/etc/skel/{{ item }} owner=root group=root mode=0644"
   with_items:
     - .aliases
     - .bash_profile
-    - .bash_prompt
     - .bashrc
     - .exports
     - .gitignore_global
@@ -13,12 +13,20 @@
   tags:
     - bash
 
+- name: configure bash prompt for skel
+  template: src=.bash_prompt
+    dest=/etc/skel/.bash_prompt
+    backup=no
+    owner=root group=root mode=0644
+  tags:
+    - bash
+
+# root
 - name: configure bash for root
   copy: "src={{ item }} dest=/root/{{ item }} owner=root group=root mode=0644"
   with_items:
     - .aliases
     - .bash_profile
-    - .bash_prompt
     - .bashrc
     - .exports
     - .gitignore_global
@@ -27,16 +35,32 @@
   tags:
     - bash
 
+- name: configure bash prompt for root
+  template: src=.bash_prompt
+    dest=/root/.bash_prompt
+    backup=no
+    owner=root group=root mode=0644
+  tags:
+    - bash
+
+# vagrant
 - name: configure bash for vagrant
   copy: "src={{ item }} dest=/home/vagrant/{{ item }} owner=vagrant group=vagrant mode=0644"
   with_items:
     - .aliases
     - .bash_profile
-    - .bash_prompt
     - .bashrc
     - .exports
     - .gitignore_global
     - .inputrc
     - .tmux.conf
+  tags:
+    - bash
+
+- name: configure bash prompt for vagrant
+  template: src=.bash_prompt
+    dest=/home/vagrant/.bash_prompt
+    backup=no
+    owner=vagrant group=vagrant mode=0644
   tags:
     - bash
