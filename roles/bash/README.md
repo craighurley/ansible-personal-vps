@@ -12,10 +12,10 @@ OS type(s):
 Role Variables
 --------------
 
-- Set the colour of the bash prompt to red, yellow or green with `v_bash_prompt_colour`:
--- 1 is red, for PROD
--- 3 is yellow, for TEST
--- 2 is green, for DEV
+Set the colour of the bash prompt to red, yellow or green with `v_bash_prompt_colour`:
+- 1 is red, for PROD
+- 3 is yellow, for TEST
+- 2 is green, for DEV
 
 Dependencies
 ------------
