@@ -12,7 +12,7 @@ OS type(s):
 Role Variables
 --------------
 
-This role requires `v_private_users` to be configured in `./private/vars/{{ ansible_os_family }}.yml`.  For example:
+This role requires `v_private_users` to be configured in `./private/vars/users.yml`.  For example:
 
     ---
     v_private_users:
@@ -51,7 +51,7 @@ Example Playbook
       sudo: yes
       gather_facts: yes
       vars_files:
-        - "./private/vars/{{ ansible_os_family }}.yml"
+        - "./private/vars/users.yml"
       roles:
          - users
 

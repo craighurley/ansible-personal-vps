@@ -1,0 +1,20 @@
+alias g="git"
+alias h="history"
+alias j="jobs"
+alias c="clear"
+alias e="exit"
+alias t="tmux"
+
+# List all files colorized in long format
+alias l="ls -lhF --color"
+
+# List all files colorized in long format, including dot files
+alias ll="ls -lAhF --color"
+alias la="ls -lAhF --color"
+
+# Always use color output for `ls`
+alias ls="command ls -h --color"
+
+# IP addresses
+#alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias ips="ifconfig -a | grep -o 'inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\|[a-fA-F0-9:]\+\)' | sed -e 's/inet6* //'"
