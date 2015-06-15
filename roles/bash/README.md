@@ -31,10 +31,6 @@ None.
 
 None.
 
-# License
-
-BSD
-
 # Author Information
 
 https://github.com/craighurley/
