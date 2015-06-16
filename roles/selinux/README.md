@@ -1,5 +1,4 @@
-Ansible role: selinux
-======================
+# Ansible role: selinux
 
 Enable and apply various settings to selinux.
 

@@ -1,5 +1,4 @@
-Ansible role: ssh
-=================
+# Ansible role: ssh
 
 Configure SSH.
 

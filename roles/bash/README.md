@@ -1,5 +1,4 @@
-Ansible role: bash
-==================
+# Ansible role: bash
 
 Configure bash for all users.
 

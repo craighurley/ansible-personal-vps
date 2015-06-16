@@ -1,9 +1,7 @@
-vagrant-ansible-vps
-===================
+# vagrant-ansible-vps
 
 [![Build Status](https://travis-ci.org/craighurley/vagrant-ansible-vps.svg?branch=master)](https://travis-ci.org/craighurley/vagrant-ansible-vps)
 
-# Description
 Create and configure a Virtual Private Server.
 
 Ansible will:
@@ -12,9 +10,10 @@ Ansible will:
 - Tighten SSH security (e.g. allow key auth only).
 - Configure iptables.
 - Enable SELINUX.
-- Configure bash.
+- Enable auto security updates.
 - Install common applications.
 - Install ZNC in a docker container.
+- Configure bash.
 
 # boxes.yml
 This file contains a definition of the box(es) that you want to create.

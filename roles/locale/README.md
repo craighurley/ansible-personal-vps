@@ -1,5 +1,4 @@
-Ansible role: locale
-====================
+# Ansible role: locale
 
 Configure locale settings.
 
@@ -10,7 +9,7 @@ OS type(s):
 
 # Role Variables
 
-TODO
+TODO.
 
 # Dependencies
 

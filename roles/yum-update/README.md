@@ -1,5 +1,4 @@
-Ansible role: yum-update
-========================
+# Ansible role: yum-update
 
 This role updates all packages to the latest version and can be included when initially provisioning a server.  It can also be called on it's own to perform an update any time in the future.
 

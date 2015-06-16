@@ -1,5 +1,4 @@
-Ansible role: yum-common
-========================
+# Ansible role: yum-common
 
 Configure yum: add EPEL, install common packages, enable auto security updates.
 

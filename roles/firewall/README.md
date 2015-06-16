@@ -1,5 +1,4 @@
-Ansible role: firewall
-======================
+# Ansible role: firewall
 
 Disable firewalld, install and enable iptables, then configure iptables rules.
 

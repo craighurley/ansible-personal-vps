@@ -1,5 +1,4 @@
-Ansible role: users
-===================
+# Ansible role: users
 
 Add and configure groups and users.
 
