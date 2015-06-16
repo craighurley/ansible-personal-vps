@@ -51,6 +51,10 @@ By default, the provisioner passes ansible a value for `v_environment`.  That ca
 
 This value will effect certain roles, for example, the `bash` role will set the colour of the bash prompt to red, yellow or green depending on the value of `v_environment`.
 
+# Users
+
+TODO.
+
 # TODO
 
 - Configure sudo.
