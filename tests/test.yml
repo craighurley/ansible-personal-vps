@@ -4,6 +4,7 @@
   roles:
     - users
     - ssh
+    - sudo
     - yum-update
     - yum-common
     - selinux
