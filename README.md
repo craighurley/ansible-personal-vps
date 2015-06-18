@@ -59,4 +59,3 @@ TODO.
 
 - Configure sudo.
 - Add ZNC role.
-- Figure out a better way to assign a box to development/staging/production.
