@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 # get details of boxes to build
-boxes = YAML.load_file('boxes.yml')
+boxes = YAML.load_file("boxes.yml")
 
 Vagrant.configure(2) do |config|
   # Enable hostmanager plugin
