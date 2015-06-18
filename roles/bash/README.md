@@ -11,7 +11,7 @@ OS type(s):
 
 Set the colour of the bash prompt to red, yellow or green with `v_environment`:
 - production = red
-- test = yellow
+- staging = yellow
 - development = green (default)
 
 # Dependencies
