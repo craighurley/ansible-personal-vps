@@ -46,7 +46,7 @@ The above example relies on DHCP to allocate an IP for the bridged interfcae, bu
 By default, the provisioner passes ansible a value for `v_environment`.  That can be `Nil` or it can be one of the following values:
 
 - production
-- test
+- staging
 - development
 
 This value will effect certain roles, for example, the `bash` role will set the colour of the bash prompt to red, yellow or green depending on the value of `v_environment`.
@@ -59,3 +59,4 @@ TODO.
 
 - Configure sudo.
 - Add ZNC role.
+- Figure out a better way to assign a box to development/staging/production.

@@ -1,8 +1,15 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+# development, staging or production
+environment = "development"
+
+# ansible settings
+ansible_playbook = "vps.yml"
+ansible_log_level = "v"
+
 # get details of boxes to build
-boxes = YAML.load_file('boxes.yml')
+boxes = YAML.load_file("boxes.yml")
 
 Vagrant.configure(2) do |config|
   # Enable hostmanager plugin
@@ -42,15 +49,15 @@ Vagrant.configure(2) do |config|
         vb.customize ["modifyvm", :id, "--name", box["name"]]
         vb.customize ["modifyvm", :id, "--description", box["description"]]
       end
-
-      # Configure box
-      box_config.vm.provision :ansible do |ansible|
-        ansible.playbook = box["ansible_playbook"]
-        ansible.verbose = box["ansible_log_level"]
-        ansible.extra_vars = {
-          v_environment: box["environment"]
-        }
-      end
     end
+  end
+
+  # provision boxes using ansible
+  config.vm.provision :ansible do |ansible|
+    ansible.playbook = ansible_playbook
+    ansible.verbose = ansible_log_level
+    ansible.extra_vars = {
+      v_environment: environment
+    }
   end
 end

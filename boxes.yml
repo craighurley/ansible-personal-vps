@@ -3,12 +3,17 @@
   description: Personal VPS
   box: puppetlabs/centos-7.0-64-puppet
   box_version: 1.0.1
-  ansible_playbook: vps.yml
-  ansible_log_level: v
-  environment: development
   cpus: 1
   cpu_execution_cap: 90
   ram: 1024
 #  public_network:
 #    bridge: "en0: Wi-Fi (AirPort)"
 #    ip: 192.168.2.101
+
+- name: vps-centos-2
+  description: Personal VPS
+  box: puppetlabs/centos-7.0-64-puppet
+  box_version: 1.0.1
+  cpus: 1
+  cpu_execution_cap: 90
+  ram: 1024
