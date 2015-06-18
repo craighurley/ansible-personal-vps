@@ -1,3 +1,4 @@
 ---
 v_groups:
   - sshusers
+  - provisioning
