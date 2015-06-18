@@ -8,6 +8,8 @@ Defaults   !visiblepw
 # use it when searching for configuration files.
 Defaults    always_set_home
 
+Defaults    editor=/usr/bin/nano:/bin/nano:/usr/bin/vi:/bin/vi
+
 Defaults    env_reset
 Defaults    env_keep =  "COLORS DISPLAY HOSTNAME HISTSIZE INPUTRC KDEDIR LS_COLORS"
 Defaults    env_keep += "MAIL PS1 PS2 QTDIR USERNAME LANG LC_ADDRESS LC_CTYPE"
@@ -18,7 +20,10 @@ Defaults    env_keep += "LC_TIME LC_ALL LANGUAGE LINGUAS _XKB_CHARSET XAUTHORITY
 Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin
 
 ## Allow root to run any commands anywhere
-root    ALL=(ALL)   ALL
+root        ALL=(ALL)   ALL
 
-## Allows people in group wheel to run all commands
-%wheel        ALL=(ALL)   ALL
+## Allows users in group wheel to run all commands
+%wheel      ALL=(ALL)   ALL
+
+## Allows users in group provisioning to run all commands without a password
+%provisioning    ALL=(ALL)   NOPASSWD: ALL
