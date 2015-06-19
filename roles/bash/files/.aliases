@@ -1,3 +1,5 @@
+#{{ ansible_managed }}
+
 alias g="git"
 alias h="history"
 alias j="jobs"

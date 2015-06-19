@@ -1,0 +1,19 @@
+## Default options
+Defaults    editor=/usr/bin/nano:/bin/nano:/usr/bin/vi:/bin/vi
+Defaults    timestamp_timeout=10
+
+## Aliases
+Cmnd_Alias      YUM     =   /usr/bin/yum search [A-Za-z0-9]*, \
+                            /usr/bin/yum info [A-Za-z0-9]*
+
+## Allows users in group wheel to run all commands with a password
+%wheel      ALL=(ALL)   ALL
+
+## Allows users in group provisioning to run all commands without a password
+%provisioning    ALL=(ALL)   NOPASSWD: ALL
+
+## Always allow user vagrant to run all commands without a password
+vagrant     ALL=(ALL)       NOPASSWD: ALL
+
+## Allow users in group wheel to run the following aliases without a password
+%wheel      ALL=NOPASSWD:   YUM

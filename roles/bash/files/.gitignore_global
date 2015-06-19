@@ -1,3 +1,5 @@
+#{{ ansible_managed }}
+
 # Compiled Python files
 *.pyc
 

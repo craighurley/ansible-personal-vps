@@ -1,6 +1,6 @@
-# Ansible role: bash
+# Ansible role: sudo
 
-Configure bash for all users.
+Configure sudo.
 
 # Requirements
 
@@ -9,10 +9,7 @@ OS type(s):
 
 # Role Variables
 
-Set the colour of the bash prompt to red, yellow or green with `v_environment`:
-- production = red
-- staging = yellow
-- development = green (default)
+None.
 
 # Dependencies
 
@@ -24,7 +21,7 @@ None.
       sudo: yes
       gather_facts: yes
       roles:
-         - bash
+         - sudo
 
 # TODO
 

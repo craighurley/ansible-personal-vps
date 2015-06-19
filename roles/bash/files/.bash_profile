@@ -1,3 +1,5 @@
+#{{ ansible_managed }}
+
 # Load the shell dotfiles:
 # * ~/.path can be used to extend `$PATH`.
 for file in ~/.{path,bash_prompt,exports,aliases}; do

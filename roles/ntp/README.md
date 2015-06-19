@@ -1,5 +1,4 @@
-Ansible role: ntp
-=================
+# Ansible role: ntp
 
 Install and configure NTP.
 
@@ -25,6 +24,8 @@ None.
          - ntp
 
 # TODO
+
+None.
 
 # Author Information
 

@@ -6,21 +6,19 @@
     - "./private/vars/users.yml"
   vars:
     v_environment: development
-    v_restart_delay: 90
-    v_restart_timeout: 180
-
-  pre_tasks:
+    v_restart_delay: 60
+    v_restart_timeout: 300
 
   roles:
+    # ssh depends on users, users depends on bash
     - ssh
-    #- yum-update
+    - locale
+    - sudo
+    - yum-update
     - yum-common
     - selinux
     - ntp
-    - locale
     - firewall
-
-  tasks:
 
   post_tasks:
   - name: restart server
