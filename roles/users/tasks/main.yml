@@ -7,7 +7,7 @@
     - groups
 
 - name: create users
-  user: name={{ item.id }} shell=/bin/bash groups={{ item.groups }} append=yes
+  user: name={{ item.id }} shell=/bin/bash groups={{ item.groups }}
   with_items:
     - "{{ v_private_users }}"
   tags:
