@@ -6,8 +6,8 @@
     - "./private/vars/users.yml"
   vars:
     v_environment: development
-    v_restart_delay: 90
-    v_restart_timeout: 180
+    v_restart_delay: 60
+    v_restart_timeout: 300
 
   roles:
     # ssh depends on users, users depends on bash
