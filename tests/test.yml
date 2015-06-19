@@ -2,13 +2,12 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - users
+    # ssh depends on users, users depends on bash
     - ssh
+    - locale
     - sudo
     - yum-update
     - yum-common
     - selinux
     - ntp
-    - locale
     - firewall
-    - bash
