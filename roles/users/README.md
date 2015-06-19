@@ -43,7 +43,7 @@ Source: http://docs.ansible.com/faq.html#how-do-i-generate-crypted-passwords-for
 
 # Dependencies
 
-See the [bash readme](roles/bash/README.md) for more information on how to configure users.
+See the [bash readme](../bash/README.md) for more information on how to configure users.
 
 # Example Playbook
 
