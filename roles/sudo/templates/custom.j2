@@ -1,0 +1,7 @@
+Defaults    editor=/usr/bin/nano:/bin/nano:/usr/bin/vi:/bin/vi
+
+## Allows users in group wheel to run all commands with a password
+%wheel      ALL=(ALL)   ALL
+
+## Allows users in group provisioning to run all commands without a password
+%provisioning    ALL=(ALL)   NOPASSWD: ALL
