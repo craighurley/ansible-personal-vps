@@ -1,10 +1,13 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+# API version
+VAGRANTFILE_API_VERSION = 2
+
 # get details of boxes to build
 boxes = YAML.load_file("boxes.yml")
 
-Vagrant.configure(2) do |config|
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Enable hostmanager plugin
   config.hostmanager.enabled = true
   config.hostmanager.manage_host = true
