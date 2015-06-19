@@ -53,9 +53,8 @@ This value will effect certain roles, for example, the `bash` role will set the 
 
 # Users
 
-TODO.
+See the [users readme](roles/users/README.md) for more information on how to configure users.
 
 # TODO
 
-- Configure sudo.
 - Add ZNC role.
