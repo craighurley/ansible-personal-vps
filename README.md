@@ -15,7 +15,8 @@ Ansible will:
 - Install ZNC in a docker container.
 - Configure bash.
 
-# boxes.yml
+# Boxes
+
 This file contains a definition of the box(es) that you want to create.
 
 ## Required settings
@@ -29,27 +30,32 @@ This file contains a definition of the box(es) that you want to create.
       cpu_execution_cap: 90
       ram: 1024
 
-## Optional settings:
+## Optional settings
+
 ### Network
+
 In order to add a bridged network, you can simply add the name of the interface you wish to bridge to, e.g.
 
       public_network:
         bridge: "en0: Wi-Fi (AirPort)"
 
-The above example relies on DHCP to allocate an IP for the bridged interfcae, but if you want to define a static IP:
+The above example relies on DHCP to allocate an IP for the bridged interface, but if you want to define a static IP:
 
       public_network:
         bridge: "en0: Wi-Fi (AirPort)"
         ip: 192.168.2.101
 
-### Environment
-By default, the provisioner passes ansible a value for `v_environment`.  That can be `Nil` or it can be one of the following values:
+# Environment
 
-- production
-- staging
-- development
+The provisioner passes ansible a value for `v_environment`; that should be one of the following values:
 
-This value will effect certain roles, for example, the `bash` role will set the colour of the bash prompt to red, yellow or green depending on the value of `v_environment`.
+- `production`
+- `staging`
+- `development`
+
+This value will effect certain roles, for example, the `bash` role will set the colour of the bash prompt to red, yellow or green depending on the value of `v_environment`.  If `v_environment` is set to `Nil`, both the Vagrantfile and ansible scripts should default to `development`.
+
+To set this value for the provisioner, edit `environment.yml` accordingly.
 
 # Users
 
@@ -58,3 +64,5 @@ See the [users readme](roles/users/) for more information on how to configure us
 # TODO
 
 - Add ZNC role.
+- Add digital ocean provider.
+- Assign boxes to groups in inventory file.

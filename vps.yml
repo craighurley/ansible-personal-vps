@@ -5,7 +5,6 @@
   vars_files:
     - "./private/vars/users.yml"
   vars:
-    v_environment: development
     v_restart_delay: 60
     v_restart_timeout: 300
 
