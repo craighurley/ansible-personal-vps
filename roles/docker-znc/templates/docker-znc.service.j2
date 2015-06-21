@@ -1,0 +1,12 @@
+#{{ ansible_managed }}
+
+[Unit]
+Description=docker-znc service
+After=docker.service
+Requires=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker run -p 6697:6697 TODO
+
+[Install]
+WantedBy=multi-user.target
