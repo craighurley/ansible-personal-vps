@@ -1,11 +1,29 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+require 'yaml'
+
 # API version
 VAGRANTFILE_API_VERSION = 2
 
 # get details of boxes to build
 boxes = YAML.load_file("boxes.yml")
+
+# get the environment this configuration is running in
+environment = YAML.load_file("environment.yml")
+
+if environment["environment"]
+  case environment["environment"].downcase
+  when "development", "staging", "production"
+    v_environment = environment["environment"].downcase
+  else
+    v_environment = "development"
+    puts "v_environment was defaulted to: development"
+  end
+else
+  v_environment = "development"
+  puts "v_environment was defaulted to: development"
+end
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Enable hostmanager plugin
@@ -44,6 +62,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         vb.customize ["modifyvm", :id, "--memory", box["ram"]]
         vb.customize ["modifyvm", :id, "--name", box["name"]]
         vb.customize ["modifyvm", :id, "--description", box["description"]]
+        vb.customize ["modifyvm", :id, "--groups", "/vagrant"]
       end
 
       # Configure box
@@ -51,7 +70,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         ansible.playbook = box["ansible_playbook"]
         ansible.verbose = box["ansible_log_level"]
         ansible.extra_vars = {
-          v_environment: box["environment"]
+          v_environment: v_environment
         }
       end
     end
