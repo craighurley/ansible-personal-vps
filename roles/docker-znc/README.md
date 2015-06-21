@@ -21,7 +21,7 @@ None.
       sudo: yes
       gather_facts: yes
       roles:
-         - znc
+         - docker-znc
 
 # TODO
 
