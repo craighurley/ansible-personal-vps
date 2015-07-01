@@ -1,7 +1,7 @@
 ---
 # append all existing files with _delete
 - name: delete old files
-  shell: find /etc/sudoers.d/ -type f -exec mv {} {}_delete \;
+  shell: find /etc/sudoers.d/ -type f ! -name "custom" -exec mv {} {}_delete \;
   tags:
     - sudo
 
