@@ -1,6 +1,6 @@
 ---
 - name: enable selinux
-  selinux: policy=targeted state=enforcing
+  selinux: policy=targeted state={{ v_selinux_state }}
   tags:
     - selinux
 
@@ -13,7 +13,7 @@
     - yum
 
 - name: check if selinux is enabled
-  shell: sestatus
+  command: getenforce
   register: sestatus
   tags:
     - selinux
@@ -21,15 +21,15 @@
 - name: get ports that ssh is allowed to listen on
   shell: semanage port -l | grep ssh
   register: ssh_allowed_ports
-  when: (sestatus.stdout.find('enabled') != -1)
+  when: (sestatus.stdout.find('Enforcing') != -1)
   tags:
     - selinux
 
 # ignore_errors is set to yes here because the server needs a restart before
-# selinux is actually enabled and we can apply this setting successfully.
+# selinux is actually Enforcing and we can apply this setting successfully.
 - name: add additional port ssh_port_t that ssh is allowed to listen on
   shell: "semanage port -m -t ssh_port_t -p tcp {{ v_selinux_additional_ssh_port_t }}"
-  when: (sestatus.stdout.find('enabled') != -1) and (v_selinux_additional_ssh_port_t is defined) and (ssh_allowed_ports.stdout.find('{{ v_selinux_additional_ssh_port_t }}') == -1)
+  when: (sestatus.stdout.find('Enforcing') != -1) and (v_selinux_additional_ssh_port_t is defined) and (ssh_allowed_ports.stdout.find('{{ v_selinux_additional_ssh_port_t }}') == -1)
   ignore_errors: yes
   notify:
     - restart ssh

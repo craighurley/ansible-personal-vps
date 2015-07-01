@@ -1,4 +1,7 @@
 ---
+# this should be "enforcing", "permissive" or "disabled"
+v_selinux_state: enforcing
+
 v_selinux_yum_packages:
   - policycoreutils-python
   - setroubleshoot
