@@ -1,10 +1,11 @@
 #{{ ansible_managed }}
 
+alias c="clear"
+alias d="docker"
+alias e="exit"
 alias g="git"
 alias h="history"
 alias j="jobs"
-alias c="clear"
-alias e="exit"
 alias t="tmux"
 
 # List all files colorized in long format
