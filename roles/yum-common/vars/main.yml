@@ -1,12 +1,12 @@
 ---
 v_yum_common_packages:
-  - epel-release
   - bash-completion
   - git
   - lsof
   - nano
   - nmap
   - tmux
+  - tree
   - yum-cron
 
 v_yum_cron_service: yum-cron
