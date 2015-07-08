@@ -1,3 +1,0 @@
----
-- name: restart ntp
-  service: name={{ v_ntp_service }} enabled=yes state=restarted

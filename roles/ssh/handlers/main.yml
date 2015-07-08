@@ -1,6 +1,0 @@
----
-- name: delete old ssh keys
-  shell: rm -vf /etc/ssh/ssh_host*
-
-- name: restart ssh
-  service: name={{ v_ssh_service }} enabled=yes state=restarted

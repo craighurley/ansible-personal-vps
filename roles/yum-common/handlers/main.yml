@@ -1,3 +1,0 @@
----
-- name: restart yum-cron
-  service: name={{ v_yum_cron_service }} enabled=yes state=restarted

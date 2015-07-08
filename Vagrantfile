@@ -9,22 +9,6 @@ VAGRANTFILE_API_VERSION = 2
 # get details of boxes to build
 boxes = YAML.load_file("boxes.yml")
 
-# get the environment this configuration is running in
-environment = YAML.load_file("environment.yml")
-
-if environment["environment"]
-  case environment["environment"].downcase
-  when "development", "staging", "production"
-    v_environment = environment["environment"].downcase
-  else
-    v_environment = "development"
-    puts "v_environment was defaulted to: development"
-  end
-else
-  v_environment = "development"
-  puts "v_environment was defaulted to: development"
-end
-
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Enable hostmanager plugin
   config.hostmanager.enabled = true
@@ -36,7 +20,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.define box["name"] do |box_config|
       # OS and hostname
       box_config.vm.box = box["box"]
-      box_config.vm.box_version = box["box_version"]
+      if box["box_version"]
+        box_config.vm.box_version = box["box_version"]
+      end
       box_config.vm.hostname = box["name"]
 
       # Networking.  By default a NAT interface is added.
@@ -53,7 +39,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
       # Shared folders
       box_config.vm.synced_folder ".", "/vagrant", disabled: true
-      box_config.vm.synced_folder "./share", "/vagrant_share", create: true
+      #box_config.vm.synced_folder "./share", "/vagrant_share", create: true
 
       # TODO: switch provider to digital ocean
       box_config.vm.provider "virtualbox" do |vb|
@@ -66,13 +52,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       end
 
       # Configure box
-      box_config.vm.provision :ansible do |ansible|
-        ansible.playbook = box["ansible_playbook"]
-        ansible.verbose = box["ansible_log_level"]
-        ansible.extra_vars = {
-          v_environment: v_environment
-        }
-      end
+      #box_config.vm.provision :ansible do |ansible|
+      #  ansible.playbook = box["ansible_playbook"]
+      #  ansible.verbose = box["ansible_log_level"]
+      #  ansible.extra_vars = {
+      #    v_environment: v_environment
+      #  }
+      #end
     end
   end
 end

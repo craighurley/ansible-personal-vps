@@ -1,6 +1,0 @@
-#{{ ansible_managed }}
-
-# path
-PATH=$PATH:$HOME/bin
-
-export PATH
