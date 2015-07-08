@@ -1,14 +1,18 @@
-# vagrant-vps
+# personal-vps
 
 [![Build Status](https://travis-ci.org/craighurley/vagrant-vps.svg?branch=master)](https://travis-ci.org/craighurley/vagrant-vps)
 
-Create and configure a Virtual Private Server.
+Create and configure a Virtual Private Server using Ansible and Vagrant.
 
-Vagrant will:
+For local development, Vagrant will:
 - Download a box/image.
 - Create a VM.
 - _TODO: Run a basic Ansible provisioning playbook._
 - Add hostname to the local hosts file.
+
+For all other environments use Ansible to:
+- Create VM(s).
+- Configure the VM(s).
 
 # Boxes
 
