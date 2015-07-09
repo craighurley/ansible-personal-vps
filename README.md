@@ -6,7 +6,7 @@ Create and configure a Virtual Private Server using Ansible and Vagrant.
 
 For local development, Vagrant will:
 - Download a box/image.
-- Create a VM.
+- Create a boxes on virtualbox.
 - _TODO: Run a basic Ansible provisioning playbook._
 - Add hostname to the local hosts file.
 
@@ -14,7 +14,7 @@ For all other environments use Ansible to:
 - Create VM(s).
 - Configure the VM(s).
 
-# Boxes
+# Virtualbox boxes
 
 `boxes.yml` contains a definition of the box(es) that you want to create.
 
@@ -61,5 +61,4 @@ public_network:
 # TODO
 
 - Add basic provisioning (create user and add an SSH key)
-- Add digital ocean provider.
 - Assign boxes to groups in inventory file.
