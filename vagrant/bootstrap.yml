@@ -3,7 +3,7 @@
   sudo: yes
   gather_facts: yes
   vars_files:
-    - "./vars/private/users.yml"
+    - "../vars/private/users.yml"
 
   roles:
     - users
@@ -11,7 +11,7 @@
   tasks:
     - name: add group deployment to sudoers
       lineinfile:
-        "dest=/etc/sudoers.d/10_deployment
+        "dest=/etc/sudoers.d/15_deployment
         regexp='^deployment ALL'
         line='%deployment ALL=(ALL) NOPASSWD: ALL'
         state=present
@@ -20,7 +20,7 @@
       tags:
         - bootstrap
 
-    - name: disallow root ssh access
+    - name: disable root ssh access
       lineinfile:
         dest=/etc/ssh/sshd_config
         regexp="^PermitRootLogin"
@@ -31,7 +31,7 @@
       tags:
         - bootstrap
 
-    - name: disallow ssh password authentication
+    - name: disable ssh password authentication
       lineinfile:
         dest=/etc/ssh/sshd_config
         regexp="^PasswordAuthentication"
@@ -42,7 +42,7 @@
       tags:
         - bootstrap
 
-    - name: disallow dns lookups from ssh
+    - name: disable dns lookups from ssh
       lineinfile:
         dest=/etc/ssh/sshd_config
         regexp="^UseDNS"
