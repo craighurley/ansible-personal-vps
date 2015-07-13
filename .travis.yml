@@ -11,7 +11,7 @@ install:
   - pip install ansible==$ANSIBLE_VERSION
 
   # Add ansible.cfg to pick up roles path.
-  - printf "[defaults]\nroles_path=../roles" > ansible.cfg
+  - printf "[defaults]\nroles_path=./roles" > ansible.cfg
 
 script:
   # TODO: once travis-ci includes an option to use CentOS, run the playbook for real.
