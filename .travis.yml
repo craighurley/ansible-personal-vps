@@ -6,6 +6,8 @@ python: "2.7"
 env:
   - ANSIBLE_VERSION=1.9.2
 
+sudo: required
+
 install:
   # Install Ansible.
   - pip install ansible==$ANSIBLE_VERSION
