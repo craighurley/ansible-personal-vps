@@ -1,0 +1,7 @@
+---
+v_znc_data_directory: /var/lib/znc/.znc
+v_znc_ssl_cert: /var/lib/znc/.znc/znc.pem
+v_znc_listen_ip: "127.0.0.1"
+v_znc_allow_ip: "127.0.0.1"
+v_znc_listen_port: 6697
+v_znc_max_buffer: 500
