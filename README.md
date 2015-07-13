@@ -1,5 +1,7 @@
 # personal-vps
 
+[![Build Status](https://travis-ci.org/craighurley/personal-vps.svg?branch=master)](https://travis-ci.org/craighurley/personal-vps)
+
 Create and configure a Virtual Private Server using Ansible.
 
 Ansible will:
