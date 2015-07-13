@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    # ssh depends on users, users depends on bash
+    - ssh
+    - locale
+    - sudo
+    - yum-update
+    - yum-common
+    - selinux
+    - ntp
+    - firewall
+    - docker-znc
+    - znc
