@@ -4,9 +4,7 @@
   gather_facts: yes
   vars_files:
     - "./vars/private/users.yml"
-  vars:
-    v_restart_delay: 60
-    v_restart_timeout: 300
+    - "./vars/private/znc.yml"
 
   roles:
     # ssh depends on users, users depends on bash
@@ -18,18 +16,4 @@
     - selinux
     - ntp
     - firewall
-
-  post_tasks:
-  - name: restart server
-    command: shutdown -r +1 "Restart triggered by Ansible"
-    async: 0
-    poll: 0
-
-  - name: wait for server to restart
-    local_action:
-      module: wait_for
-        host={{ ansible_ssh_host }}
-        port={{ ansible_ssh_port }}
-        delay={{ v_restart_delay }}
-        timeout={{ v_restart_timeout }}
-    sudo: no
+    - znc
