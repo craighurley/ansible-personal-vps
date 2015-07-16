@@ -4,7 +4,7 @@
   box: puppetlabs/centos-7.0-64-puppet
   box_version: 1.0.1
   cpus: 2
-  cpu_execution_cap: 90
+  cpu_execution_cap: 75
   ram: 1024
   public_network:
     bridge: "en0: Wi-Fi (AirPort)"
