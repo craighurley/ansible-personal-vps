@@ -1,3 +1,4 @@
 /facts
 /vars/private
 *.log
+/temp
