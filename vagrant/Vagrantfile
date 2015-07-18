@@ -5,7 +5,7 @@ require 'yaml'
 
 # ansible
 ansible_playbook = "bootstrap.yml"
-ansible_log_level = "v"
+#ansible_log_level = "v"
 
 # get details of boxes to build
 boxes = YAML.load_file("boxes.yml")
@@ -51,7 +51,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       # Configure box
       box_config.vm.provision :ansible do |ansible|
         ansible.playbook = ansible_playbook
-        ansible.verbose = ansible_log_level
+        if box["ansible_log_level"]
+          ansible.verbose = ansible_log_level
+        end
       end
     end
   end
