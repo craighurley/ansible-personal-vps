@@ -2,3 +2,4 @@
 /vars/private
 *.log
 /temp
+/test.yml
