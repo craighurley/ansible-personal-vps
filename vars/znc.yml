@@ -1,0 +1,36 @@
+---
+v_znc_user:
+  nickname: "{{ lookup('env', 'ZNC_USER') }}"
+  nickname_alt: "{{ lookup('env', 'ZNC_USER') }}"
+  admin: no
+  denyloadmodules: yes
+  quit_msg: "./"
+  salt: "{{ lookup('env', 'ZNC_SALT') }}"
+  hash: "{{ lookup('env', 'ZNC_HASH') }}"
+  timezone: Pacific/Auckland
+  modules:
+    - chansaver
+  network:
+    name: freenode
+    server: "chat.freenode.net +7070"
+    password: "{{ lookup('env', 'FREENODE_PASSWORD') }}"
+    modules:
+      - block_motd
+      - keepnick
+      - perform
+      - sasl
+    channels:
+      - "##{{ lookup('env', 'ZNC_USER') }}
+      - "#ansible"
+      - "#docker"
+      - "#vagrant"
+      - "#bash"
+      - "#centos"
+      - "#centos-social"
+      - "#debian"
+      - "#selinux"
+      - "##security"
+      - "#macosx"
+      - "#homebrew-cask"
+      - "#machomebrew"
+      - "#python"
