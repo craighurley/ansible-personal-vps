@@ -3,17 +3,26 @@
   sudo: yes
   gather_facts: yes
   vars_files:
+    - "./vars/yum-common.yml"
+
+  roles:
+    - firewall
+    - yum-common
+    - yum-update
+    - selinux
+
+- hosts: all
+  sudo: yes
+  gather_facts: yes
+  vars_files:
     - "./vars/private/users.yml"
-    - "./vars/private/znc.yml"
+    - "./vars/ssh.yml"
+    - "./vars/znc.yml"
 
   roles:
     # ssh depends on users, users depends on bash
     - ssh
     - locale
     - sudo
-    - yum-update
-    - yum-common
-    - selinux
     - ntp
-    - firewall
     - znc
