@@ -3,6 +3,7 @@
   sudo: yes
   gather_facts: yes
   vars_files:
+    - "./vars/firewall.yml"
     - "./vars/yum-common.yml"
 
   roles:

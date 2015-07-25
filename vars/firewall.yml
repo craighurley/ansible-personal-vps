@@ -1,0 +1,4 @@
+---
+v_firewall_inbound_ports:
+  - port: "443"
+    protocol: "tcp"
