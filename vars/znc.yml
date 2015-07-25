@@ -20,7 +20,7 @@ v_znc_user:
       - perform
       - sasl
     channels:
-      - "##{{ lookup('env', 'ZNC_USER') }}
+      - "##{{ lookup('env', 'ZNC_USER') }}"
       - "#ansible"
       - "#docker"
       - "#vagrant"
