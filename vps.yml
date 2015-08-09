@@ -3,27 +3,28 @@
   sudo: yes
   gather_facts: yes
   vars_files:
-    - "./vars/firewall.yml"
-    - "./vars/yum-common.yml"
+    - "./vars/private/users.yml"
+    - "./vars/yum-cron.yml"
 
   roles:
-    - firewall
-    - yum-common
+    - locale
     - yum-update
+    - yum-common
+    - yum-cron
+    - ntp
+    - bash
+    - users
+    - ssh
+    - sudo
+    - firewall
+    # selinux requires a reboot if going from disabled to enabled
     - selinux
 
 - hosts: all
   sudo: yes
   gather_facts: yes
   vars_files:
-    - "./vars/private/users.yml"
-    - "./vars/ssh.yml"
     - "./vars/znc.yml"
 
   roles:
-    # ssh depends on users, users depends on bash
-    - ssh
-    - locale
-    - sudo
-    - ntp
     - znc
