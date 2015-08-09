@@ -4,7 +4,7 @@
 require 'yaml'
 
 # ansible
-ansible_playbook = "../bootstrap.yml"
+ansible_playbook = "../bootstrap_vagrant.yml"
 #ansible_log_level = "v"
 
 # get details of boxes to build
