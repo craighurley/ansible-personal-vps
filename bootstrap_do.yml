@@ -1,0 +1,140 @@
+---
+- hosts: localhost
+  sudo: no
+  gather_facts: no
+  vars:
+    v_environment: production
+    v_vps_name: vps.prod
+    v_vps_size: 66
+    v_vps_region: 3
+    v_vps_image: 10322623
+    v_vps_timeout: 500
+
+  tasks:
+    - name: ensure ssh key exists
+      digital_ocean: >
+        command=ssh
+        state=present
+        name='deploy'
+        ssh_pub_key="{{ lookup('file', '~/.ssh/id_rsa.deploy.pub') }}"
+        client_id="{{ lookup('env', 'DO_CLIENT_ID') }}"
+        api_key="{{ lookup('env', 'DO_API_KEY') }}"
+      register: ssh_key
+      tags:
+        - provision
+
+    - name: create droplet
+      digital_ocean: >
+        state=active
+        command=droplet
+        ssh_key_ids={{ ssh_key.ssh_key.id }}
+        name="{{ v_vps_name }}"
+        unique_name=yes
+        client_id="{{ lookup('env', 'DO_CLIENT_ID') }}"
+        api_key="{{ lookup('env', 'DO_API_KEY') }}"
+        size_id="{{ v_vps_size }}"
+        region_id="{{ v_vps_region }}"
+        image_id="{{ v_vps_image }}"
+        wait_timeout="{{ v_vps_timeout }}"
+      register: do
+      tags:
+        - provision
+
+    - name: droplet info
+      debug: msg="ID {{ do.droplet.id }}, IP {{ do.droplet.ip_address }}"
+      tags:
+        - provision
+
+    - name: add host to inventory
+      add_host: name="{{ v_vps_name }}"
+        hostname="{{ v_vps_name }}"
+        ansible_ssh_host="{{ do.droplet.ip_address }}"
+        ansible_ssh_port=22
+        ansible_ssh_user=root
+        ansible_ssh_private_key_file=~/.ssh/id_rsa.deploy
+        groups=do
+        v_environment={{ v_environment }}
+      when: do.droplet is defined
+      tags:
+        - provision
+
+- hosts: do
+  sudo: no
+  gather_facts: no
+  vars_files:
+    - "./vars/private/users.yml"
+
+  roles:
+    - bash
+    - users
+
+  tasks:
+    - name: wait for server to become available
+      local_action:
+        module: wait_for
+          host={{ ansible_ssh_host }}
+          port={{ ansible_ssh_port }}
+          delay=5
+          timeout=500
+      sudo: no
+      tags:
+        - bootstrap
+
+    - name: add group deployment to sudoers
+      lineinfile:
+        "dest=/etc/sudoers.d/15_deployment
+        regexp='^deployment ALL'
+        line='%deployment ALL=(ALL) NOPASSWD: ALL'
+        state=present
+        create=yes
+        owner=0 group=0 mode=0640"
+      tags:
+        - bootstrap
+
+    - name: disable root ssh access
+      lineinfile:
+        dest=/etc/ssh/sshd_config
+        regexp="^PermitRootLogin"
+        line="PermitRootLogin no"
+        state=present
+      notify:
+        - restart ssh
+      tags:
+        - bootstrap
+
+    - name: disable ssh password authentication
+      lineinfile:
+        dest=/etc/ssh/sshd_config
+        regexp="^PasswordAuthentication"
+        line="PasswordAuthentication no"
+        state=present
+      notify:
+        - restart ssh
+      tags:
+        - bootstrap
+
+    - name: disable dns lookups from ssh
+      lineinfile:
+        dest=/etc/ssh/sshd_config
+        regexp="^UseDNS"
+        line="UseDNS no"
+        state=present
+      notify:
+        - restart ssh
+      tags:
+        - bootstrap
+
+    - name: allow ssh access to only those users in the group sshusers
+      lineinfile:
+        dest=/etc/ssh/sshd_config
+        regexp="^AllowGroups"
+        line="AllowGroups sshusers"
+        state=present
+      notify:
+        - restart ssh
+      tags:
+        - bootstrap
+
+  handlers:
+    - name: restart ssh
+      service: name=sshd enabled=yes state=restarted

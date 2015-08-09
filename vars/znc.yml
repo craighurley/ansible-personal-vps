@@ -8,19 +8,21 @@ v_znc_user:
   salt: "{{ lookup('env', 'ZNC_SALT') }}"
   hash: "{{ lookup('env', 'ZNC_HASH') }}"
   timezone: Pacific/Auckland
-  modules:
-    - chansaver
   network:
     name: freenode
     server: "chat.freenode.net +7070"
     password: "{{ lookup('env', 'FREENODE_PASSWORD') }}"
     modules:
-      - block_motd
-      - keepnick
-      - perform
-      - sasl
+      - name: block_motd
+        template: no
+      - name: keepnick
+        template: no
+      - name: perform
+        template: yes
+      - name: sasl
+        template: yes
     channels:
-      - "##{{ lookup('env', 'ZNC_USER') }}
+      - "##{{ lookup('env', 'ZNC_USER') }}"
       - "#ansible"
       - "#docker"
       - "#vagrant"
@@ -28,9 +30,5 @@ v_znc_user:
       - "#centos"
       - "#centos-social"
       - "#debian"
-      - "#selinux"
       - "##security"
       - "#macosx"
-      - "#homebrew-cask"
-      - "#machomebrew"
-      - "#python"
