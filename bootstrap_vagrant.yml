@@ -3,11 +3,12 @@
   sudo: yes
   gather_facts: yes
   vars_files:
-    - "../vars/private/users.yml"
+    - "./vars/private/users.yml"
 
   roles:
     - bash
     - users
+    - sudo
 
   tasks:
     - name: add group deployment to sudoers
