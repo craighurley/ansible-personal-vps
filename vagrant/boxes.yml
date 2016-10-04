@@ -1,8 +1,8 @@
 ---
 - name: vps.dev
   description: Personal VPS
-  box: puppetlabs/centos-7.0-64-puppet
-  box_version: 1.0.1
+  box: centos/7
+  box_version: "1509.01"
   cpus: 2
   cpu_execution_cap: 75
   ram: 1024
