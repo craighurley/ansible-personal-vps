@@ -2,51 +2,81 @@
 
 [![Build Status](https://travis-ci.org/craighurley/personal-vps.svg?branch=master)](https://travis-ci.org/craighurley/personal-vps)
 
-Create and configure a Virtual Private Server using Ansible.
+Configure a Virtual Private Server using Ansible.
+
+## Ansible
 
 Ansible will:
 
-- Configure iptables.
-- Install common applications.
-- Enable auto security updates.
-- Update all installed packages.
-- Enable SELINUX.
-- Configure bash.
-- Add users.
-- Tighten SSH security (e.g. allow key auth only).
-- Set the locale.
-- Add custom entries to sudo.
-- Install and configure NTP.
-- Install and configure ZNC.
+* Configure iptables.
+* Install common applications.
+* Enable auto security updates.
+* Update all installed packages.
+* Enable SELINUX.
+* Configure bash.
+* Add or update users.
+* Tighten SSH security (e.g. allow key auth only).
+* Set the locale.
+* Add custom entries to sudo.
+* Install and configure NTP.
 
-# Running
+### Running
 
-1. Create your target VM.  If you create your VM using Vagrant, you can automatically have it 
-2. Create and populate your inventory files for each environment.
-3. Run `bootstrap.yml` playbook.  You can either run this automatically (using Vagrant for example), or manually like this:
+Ping all dev servers
 
-```bash
-ansible-playbook bootstrap.yml -i inventory.production
+```sh
+$ ansible-playbook ping.yml -i inventory -l dev
 ```
 
-4. Once `bootstrap.yml` has run successfully the necessary users & keys have been added to the target VM, so you can run the main playbook, `vps.yml`:
+Check what will be changed on the dev server(s)
 
-```bash
-ansible-playbook vps.yml -i inventory.production
+```sh
+$ ansible-playbook vps.yml -i inventory -l dev --check
 ```
 
-# Environment
+Run on all dev servers
 
-The provisioner passes Ansible a value for `v_environment`; that should be one of the following values:
+```sh
+$ ansible-playbook vps.yml -i inventory -l dev
+```
 
-- `production`
-- `staging`
-- `development`
+Run specific tags, e.g. `yum`
 
-This value will effect certain roles, for example, the `bash` role will set the colour of the bash prompt to red, yellow or green depending on the value of `v_environment`.  `v_environment` defaults to `development`.
+```sh
+$ ansible-playbook vps.yml -i inventory -l dev --tags="yum"
+```
 
-You can set this this variable either on the command line or in your inventory file.
+Run for real on prod, including more verbose logs
 
-# Users
+```sh
+$ ansible-playbook vps.yml -i inventory -l prod -v
+```
+
+### Users
 
 See the [users readme](roles/users/) for more information on how to configure users.
+
+## Development
+
+A `Vagrantfile` is included in this repository that creates a local server for testing.  To create the local server run:
+
+```sh
+$ vagrant up
+```
+
+On running the above command, Vagrant will:
+
+* Create each of the servers defined in `boxes.yml`.
+* Call a shell script to provision the server using cloud-init.  The cloud-init configuration files are in `./cloud-init/nocloud-net/`.
+
+Once you're finished with the vagrant box, destroy it with:
+
+```sh
+$ vagrant destroy -f
+```
+
+
+## Links
+
+[http://docs.ansible.com/ansible/](http://docs.ansible.com/ansible/)
+[http://cloudinit.readthedocs.io/](http://cloudinit.readthedocs.io/)

@@ -1,5 +1,5 @@
+/.vagrant/
 /facts
 /vars/private
 *.log
 /temp
-/test.yml

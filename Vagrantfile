@@ -3,12 +3,8 @@
 
 require 'yaml'
 
-# ansible
-ansible_playbook = '../bootstrap_vagrant.yml'
-# ansible_log_level = 'vv'
-
 # get details of boxes to build
-boxes = YAML.load_file('boxes.yml')
+boxes = YAML.load_file('./boxes.yml')
 
 # API version
 VAGRANTFILE_API_VERSION = 2
@@ -24,8 +20,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       box_config.vm.hostname = box['name']
 
       # Networking.  By default a NAT interface is added.
-      # Add a internal network like this:
-      # box_config.vm.network 'private_network', type: 'dhcp', virtualbox__intnet: true
+      # Add an internal network like this:
+      #   box_config.vm.network 'private_network', type: 'dhcp', virtualbox__intnet: true
       # Add a bridged network
       if box['public_network']
         if box['public_network']['ip']
@@ -37,7 +33,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
       # Shared folders
       box_config.vm.synced_folder '.', '/vagrant', disabled: true
-      # box_config.vm.synced_folder './share', '/vagrant_share', create: true
 
       box_config.vm.provider 'virtualbox' do |vb|
         vb.customize ['modifyvm', :id, '--cpus', box['cpus']]
@@ -48,11 +43,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         vb.customize ['modifyvm', :id, '--groups', '/vagrant']
       end
 
-      # Configure box
-      box_config.vm.provision :ansible do |ansible|
-        ansible.playbook = ansible_playbook
-        ansible.verbose = ansible_log_level if defined? ansible_log_level
-      end
+      # Copy cloud-init files to tmp and provision
+      config.vm.provision :file, :source => './cloud-init/nocloud-net/meta-data.yml', :destination => '/tmp/vagrant/cloud-init/nocloud-net/meta-data'
+      config.vm.provision :file, :source => './cloud-init/nocloud-net/user-data.yml', :destination => '/tmp/vagrant/cloud-init/nocloud-net/user-data'
+      config.vm.provision :shell, :path => './scripts/provision.sh'
     end
   end
 end

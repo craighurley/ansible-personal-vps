@@ -1,10 +1,7 @@
 ---
 - hosts: all
-  sudo: yes
-  gather_facts: yes
-  vars_files:
-    - "./vars/private/users.yml"
-    - "./vars/yum-cron.yml"
+  become: true
+  gather_facts: true
 
   roles:
     - locale
@@ -19,12 +16,3 @@
     - firewall
     # selinux requires a reboot if going from disabled to enabled
     - selinux
-
-- hosts: all
-  sudo: yes
-  gather_facts: yes
-  vars_files:
-    - "./vars/znc.yml"
-
-  roles:
-    - znc
