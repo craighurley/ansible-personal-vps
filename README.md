@@ -25,31 +25,31 @@ Ansible will:
 Ping all dev servers
 
 ```sh
-$ ansible-playbook ping.yml -i inventory -l dev
+$ ansible-playbook ping.yaml -i inventory -l dev
 ```
 
 Check what will be changed on the dev server(s)
 
 ```sh
-$ ansible-playbook vps.yml -i inventory -l dev --check
+$ ansible-playbook vps.yaml -i inventory -l dev --check
 ```
 
 Run on all dev servers
 
 ```sh
-$ ansible-playbook vps.yml -i inventory -l dev
+$ ansible-playbook vps.yaml -i inventory -l dev
 ```
 
 Run specific tags, e.g. `yum`
 
 ```sh
-$ ansible-playbook vps.yml -i inventory -l dev --tags="yum"
+$ ansible-playbook vps.yaml -i inventory -l dev --tags="yum"
 ```
 
 Run for real on prod, including more verbose logs
 
 ```sh
-$ ansible-playbook vps.yml -i inventory -l prod -v
+$ ansible-playbook vps.yaml -i inventory -l prod -v
 ```
 
 ### Users
@@ -66,7 +66,7 @@ $ vagrant up
 
 On running the above command, Vagrant will:
 
-* Create each of the servers defined in `boxes.yml`.
+* Create each of the servers defined in `boxes.yaml`.
 * Call a shell script to provision the server using cloud-init.  The cloud-init configuration files are in `./cloud-init/nocloud-net/`.
 
 Once you're finished with the vagrant box, destroy it with:

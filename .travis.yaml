@@ -17,7 +17,7 @@ script:
   # TODO: once travis-ci includes an option to use CentOS, run the playbook for real.
 
   # Check the syntax of the playbook, including the roles is uses.
-  - ansible-playbook .tests/test.yml -i .tests/inventory --syntax-check
+  - ansible-playbook .tests/test.yaml -i .tests/inventory --syntax-check
 
 notifications:
   irc:

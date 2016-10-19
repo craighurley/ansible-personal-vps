@@ -4,7 +4,7 @@
 require 'yaml'
 
 # get details of boxes to build
-boxes = YAML.load_file('./boxes.yml')
+boxes = YAML.load_file('./boxes.yaml')
 
 # API version
 VAGRANTFILE_API_VERSION = 2
@@ -44,8 +44,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       end
 
       # Copy cloud-init files to tmp and provision
-      config.vm.provision :file, :source => './cloud-init/nocloud-net/meta-data.yml', :destination => '/tmp/vagrant/cloud-init/nocloud-net/meta-data'
-      config.vm.provision :file, :source => './cloud-init/nocloud-net/user-data.yml', :destination => '/tmp/vagrant/cloud-init/nocloud-net/user-data'
+      config.vm.provision :file, :source => './cloud-init/nocloud-net/meta-data.yaml', :destination => '/tmp/vagrant/cloud-init/nocloud-net/meta-data'
+      config.vm.provision :file, :source => './cloud-init/nocloud-net/user-data.yaml', :destination => '/tmp/vagrant/cloud-init/nocloud-net/user-data'
       config.vm.provision :shell, :path => './scripts/provision.sh'
     end
   end
