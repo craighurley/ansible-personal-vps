@@ -1,0 +1,28 @@
+---
+language: python
+
+python: "2.7"
+
+env:
+  - ANSIBLE_VERSION=2.1.2.0
+
+install:
+  # Install Ansible.
+  - pip install ansible==$ANSIBLE_VERSION
+
+  # Add ansible.cfg to pick up roles path.
+  - printf "[defaults]\nroles_path=./roles" > ansible.cfg
+
+script:
+  # TODO: once travis-ci includes an option to use CentOS, run the playbook for real.
+
+  # Check the syntax of the playbook, including the roles is uses.
+  - ansible-playbook .tests/test.yaml -i .tests/inventory --syntax-check
+
+notifications:
+  irc:
+    channels:
+      - "chat.freenode.net##phatypus"
+    template:
+      - "(%{repository_name}) %{build_number}: %{branch}@%{commit} %{author} -> %{message} %{build_url}"
+    use_notice: true
