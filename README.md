@@ -77,5 +77,5 @@ $ vagrant destroy -f
 
 ## Links
 
-[http://docs.ansible.com/ansible/](http://docs.ansible.com/ansible/)
-[http://cloudinit.readthedocs.io/](http://cloudinit.readthedocs.io/)
+* <http://docs.ansible.com/ansible/>
+* <http://cloudinit.readthedocs.io/>
