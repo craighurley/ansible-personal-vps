@@ -75,7 +75,6 @@ Once you're finished with the vagrant box, destroy it with:
 $ vagrant destroy -f
 ```
 
-
 ## Links
 
 [http://docs.ansible.com/ansible/](http://docs.ansible.com/ansible/)
