@@ -37,4 +37,4 @@ EOF
 fi
 
 # check the syntax of the playbook, including the roles is uses.
-ansible-playbook ./test.yaml -i ./inventory.local --syntax-check
+ansible-playbook ./playbooks/test.yaml -i ./inventory.local --syntax-check

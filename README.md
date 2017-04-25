@@ -8,48 +8,48 @@ Configure a Virtual Private Server using Ansible.
 
 Ansible will:
 
-* Configure iptables.
-* Install common applications.
-* Enable auto security updates.
-* Update all installed packages.
-* Enable SELINUX.
-* Configure bash.
-* Add or update users.
-* Tighten SSH security (e.g. allow key auth only).
-* Set the locale.
-* Add custom entries to sudo.
-* Install and configure NTP.
+- Configure iptables.
+- Install common applications.
+- Enable auto security updates.
+- Update all installed packages.
+- Enable SELINUX.
+- Configure bash.
+- Add or update users.
+- Tighten SSH security (e.g. allow key auth only).
+- Set the locale.
+- Add custom entries to sudo.
+- Install and configure NTP.
 
 ### Running
 
 Ping all dev servers
 
 ```sh
-$ ansible-playbook ping.yaml -i inventory -l dev
+$ ansible-playbook ./playbooks/ping.yaml -i inventory -l dev
 ```
 
 Check what will be changed on the dev server(s)
 
 ```sh
-$ ansible-playbook vps.yaml -i inventory -l dev --check
+$ ansible-playbook ./playbooks/vps.yaml -i inventory -l dev --check
 ```
 
 Run on all dev servers
 
 ```sh
-$ ansible-playbook vps.yaml -i inventory -l dev
+$ ansible-playbook ./playbooks/vps.yaml -i inventory -l dev
 ```
 
 Run specific tags, e.g. `yum`
 
 ```sh
-$ ansible-playbook vps.yaml -i inventory -l dev --tags="yum"
+$ ansible-playbook ./playbooks/vps.yaml -i inventory -l dev --tags="yum"
 ```
 
 Run for real on prod, including more verbose logs
 
 ```sh
-$ ansible-playbook vps.yaml -i inventory -l prod -v
+$ ansible-playbook ./playbooks/vps.yaml -i inventory -l prod -v
 ```
 
 ### Users
@@ -66,8 +66,8 @@ $ vagrant up
 
 On running the above command, Vagrant will:
 
-* Create each of the servers defined in `boxes.yaml`.
-* Call a shell script to provision the server using cloud-init.  The cloud-init configuration files are in `./cloud-init/nocloud-net/`.
+- Create each of the servers defined in `boxes.yaml`.
+- Call a shell script to provision the server using cloud-init.  The cloud-init configuration files are in `./cloud-init/nocloud-net/`.
 
 Once you're finished with the vagrant box, destroy it with:
 
@@ -77,5 +77,5 @@ $ vagrant destroy -f
 
 ## Links
 
-* <http://docs.ansible.com/ansible/>
-* <http://cloudinit.readthedocs.io/>
+- <http://docs.ansible.com/ansible/>
+- <http://cloudinit.readthedocs.io/>

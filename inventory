@@ -1,5 +1,5 @@
 [dev]
-vps.dev ansible_host=localhost ansible_port=2222 ansible_user=centos ansible_ssh_private_key_file=~/.ssh/id_rsa.deploy
+vps.local ansible_host=localhost ansible_port=2201 ansible_user=centos ansible_ssh_private_key_file=~/.ssh/id_rsa.deploy
 
 [prod]
 vps.prod ansible_host=vps.prod ansible_port=22 ansible_user=centos ansible_ssh_private_key_file=~/.ssh/id_rsa.deploy
