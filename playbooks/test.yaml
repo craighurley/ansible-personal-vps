@@ -2,12 +2,9 @@
 - hosts: localhost
   remote_user: root
   roles:
-    # ssh depends on users, users depends on bash
     - locale
     - sudo
     - yum-update
     - yum
     - ntp
     - harden
-    - docker-znc
-    - znc

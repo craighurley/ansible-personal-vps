@@ -32,13 +32,7 @@ for f in $(find "$SCRIPTPATH/../" -type f -not \( -iwholename '*.git*' -o -iwhol
     fi
 done
 
-# check the syntax of playbooks, including the roles is uses.
-for f in $(find "$SCRIPTPATH/../playbooks" -type f -not \( -iwholename '*.git*' -o -iwholename '*.tmp*'  \) | sort -u) ; do
-    if file "$f" | grep -i --quiet "text" ; then
-        if [[ "$f" = *.yaml || "$f" = *.yml ]]; then
-            ansible-playbook "$f" -i "$SCRIPTPATH/inventory.local" --syntax-check
-        fi
-    fi
-done
+# check the syntax of playbooks
+ansible-playbook "$SCRIPTPATH/../playbooks/test.yaml" -i "$SCRIPTPATH/inventory.local" --syntax-check
 
 exit 0
