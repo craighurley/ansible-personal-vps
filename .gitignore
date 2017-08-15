@@ -1,5 +1,7 @@
+*.log
+*.retry
 /.vagrant/
 /facts
+/fetched
+/tmp
 /vars/private
-*.log
-/temp

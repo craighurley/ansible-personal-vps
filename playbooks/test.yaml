@@ -3,13 +3,11 @@
   remote_user: root
   roles:
     # ssh depends on users, users depends on bash
-    - ssh
     - locale
     - sudo
     - yum-update
-    - yum-common
-    - selinux
+    - yum
     - ntp
-    - firewall
+    - harden
     - docker-znc
     - znc

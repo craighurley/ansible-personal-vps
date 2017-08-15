@@ -4,6 +4,10 @@ set -e
 set -o pipefail
 IFS=$'\n'
 
+pushd "$(dirname "$0")" > /dev/null
+SCRIPTPATH=$(pwd)
+popd > /dev/null
+
 # install additional tools
 [[ ! -f "$(which mdl)" ]] && gem install mdl
 [[ ! -f "$(which yaml-lint)" ]] && gem install yaml-lint
@@ -16,7 +20,7 @@ EOF
 fi
 
 # find and lint files
-for f in $(find . -type f -not \( -iwholename '*.git*' -o -iwholename '*.tmp*'  \) | sort -u) ; do
+for f in $(find "$SCRIPTPATH/../" -type f -not \( -iwholename '*.git*' -o -iwholename '*.tmp*'  \) | sort -u) ; do
     if file "$f" | grep -i --quiet "\(bash\|shell\) script" ; then
         shellcheck "$f"
     elif file "$f" | grep -i --quiet "text" ; then
@@ -28,13 +32,13 @@ for f in $(find . -type f -not \( -iwholename '*.git*' -o -iwholename '*.tmp*'  
     fi
 done
 
-# create ansible config file
-if [[ ! -f ./ansible.cfg ]] ; then
-    cat << EOF > ./ansible.cfg
-[defaults]
-roles_path=./roles
-EOF
-fi
+# check the syntax of playbooks, including the roles is uses.
+for f in $(find "$SCRIPTPATH/../playbooks" -type f -not \( -iwholename '*.git*' -o -iwholename '*.tmp*'  \) | sort -u) ; do
+    if file "$f" | grep -i --quiet "text" ; then
+        if [[ "$f" = *.yaml || "$f" = *.yml ]]; then
+            ansible-playbook "$f" -i "$SCRIPTPATH/inventory.local" --syntax-check
+        fi
+    fi
+done
 
-# check the syntax of the playbook, including the roles is uses.
-ansible-playbook ./playbooks/test.yaml -i ./inventory.local --syntax-check
+exit 0

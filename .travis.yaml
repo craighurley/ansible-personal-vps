@@ -7,7 +7,7 @@ language: python
 python: "2.7"
 
 env:
-  - ANSIBLE_VERSION=2.1.2.0
+  - ANSIBLE_VERSION=2.3.2.0
 
 before_install:
   - sudo apt-get -qq update
@@ -17,7 +17,7 @@ install:
   - pip install ansible==$ANSIBLE_VERSION
 
 script:
-  - ./test.sh
+  - ./tests/test.sh
 
 notifications:
   irc:

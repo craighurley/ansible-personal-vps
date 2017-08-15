@@ -1,18 +1,17 @@
 ---
 - hosts: all
-  become: true
-  gather_facts: true
+  become: yes
+  gather_facts: yes
+
+  vars_files:
+    - ../vars/private/users.yaml
 
   roles:
     - locale
-    - yum-update
-    - yum-common
-    - yum-cron
-    - ntp
-    - bash
+    - shell
     - users
-    - ssh
     - sudo
-    - firewall
-    # selinux requires a reboot if going from disabled to enabled
-    - selinux
+    - yum-update
+    - yum
+    - ntp
+    - harden
