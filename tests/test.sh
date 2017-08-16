@@ -33,6 +33,6 @@ for f in $(find "$SCRIPTPATH/../" -type f -not \( -iwholename '*.git*' -o -iwhol
 done
 
 # check the syntax of playbooks
-ansible-playbook "$SCRIPTPATH/../playbooks/test.yaml" -i "$SCRIPTPATH/inventory.local" --syntax-check
+ansible-playbook "$SCRIPTPATH/test.yaml" -i "$SCRIPTPATH/inventory.local" --syntax-check
 
 exit 0
