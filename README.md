@@ -8,17 +8,17 @@ Configure a Virtual Private Server using Ansible.
 
 Ansible will:
 
-- Configure iptables.
+- Set the locale.
+- Configure shell.
+- Add or update users.
+- Add custom entries to sudo.
+- Update all installed packages.
 - Install common applications.
 - Enable auto security updates.
-- Update all installed packages.
+- Install and configure chrony (a ntpd replacement).
+- Configure iptables.
 - Enable SELINUX.
-- Configure bash.
-- Add or update users.
 - Tighten SSH security (e.g. allow key auth only).
-- Set the locale.
-- Add custom entries to sudo.
-- Install and configure NTP.
 
 ### Running
 

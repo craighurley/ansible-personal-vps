@@ -5,6 +5,7 @@
 
   vars_files:
     - ../vars/private/users.yaml
+    - ../vars/private/yum-cron.yaml
 
   roles:
     - locale
@@ -13,5 +14,17 @@
     - sudo
     - yum-update
     - yum
-    - ntp
+    - chrony
     - harden
+
+- hosts: all
+  become: yes
+  become_user: craig
+  gather_facts: no
+
+  vars_files:
+    - ../vars/private/weechat.yaml
+
+  roles:
+    - vim
+    - weechat
