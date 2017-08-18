@@ -46,10 +46,10 @@ Run specific tags, e.g. `yum`
 $ ansible-playbook ./playbooks/vps.yaml -i inventory -l dev --tags="yum"
 ```
 
-Run for real on prod, including more verbose logs
+Run for real on AWS, including more verbose logs
 
 ```sh
-$ ansible-playbook ./playbooks/vps.yaml -i inventory -l prod -v
+$ ansible-playbook ./playbooks/vps.yaml -i inventory -l aws -v
 ```
 
 ### Users
