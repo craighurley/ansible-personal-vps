@@ -9,7 +9,6 @@
 
   roles:
     - locale
-    - shell
     - users
     - sudo
     - yum-update
@@ -28,3 +27,4 @@
   roles:
     - vim
     - weechat
+    - shell
