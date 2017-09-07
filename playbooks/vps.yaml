@@ -25,6 +25,7 @@
     - ../vars/private/weechat.yaml
 
   roles:
+    - shell
+    - tmux
     - vim
     - weechat
-    - shell
